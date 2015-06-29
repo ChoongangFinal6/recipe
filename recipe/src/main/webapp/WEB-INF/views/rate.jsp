@@ -1,4 +1,5 @@
 <%@ include file="aa.jsp"%>
+<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <div class="rate">
@@ -22,3 +23,9 @@ ${10-j}
 </span>
 </form>
 </div>
+=======
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<div class="rate">
+a
+</div>
+>>>>>>> fb3b592fd5cf0b8bf1811de284de9cda8d7fdaab

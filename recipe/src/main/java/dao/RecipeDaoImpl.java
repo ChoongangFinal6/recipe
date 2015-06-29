@@ -5,8 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class RecipeDaoImpl implements RecipeDao {
+public class RecipeDaoImpl implements RecipeDao{
+	
 	@Autowired
 	private SqlSession session;
-		
 }
