@@ -4,21 +4,10 @@
 <configuration>
 	<properties resource="mybatis/jdbc.properties"/>
 	<typeAliases>
-		<typeAlias alias="ToDo" type="model.ToDo" />
+		<typeAlias alias="Rating" type="model.Rating" />
 	</typeAliases>
-	<environments default="development">
-		<environment id="development">
-			<transactionManager type="JDBC" />
-			<dataSource type="POOLED">
-				<property name="driver" value="${jdbc.driver}" />
-				<property name="url"	value="${jdbc.url}" />
-				<property name="username" value="${jdbc.username}" />
-				<property name="password" value="${jdbc.password}" />
-			</dataSource>
-		</environment>
-	</environments>
 	<mappers>
-		<mapper resource="mybatis/ToDo.xml" />
+		<mapper resource="mybatis/Rating.xml" />
 	</mappers>
 </configuration>
 
