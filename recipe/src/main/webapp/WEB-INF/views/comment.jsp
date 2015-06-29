@@ -2,16 +2,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <link href="<c:url value="/resources/css/recipe.css" />" rel="stylesheet">
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>댓글페이지</title>
-</head>
 <!-- start of contents -->
 <script type="text/javascript">
 </script>
-<body>
+<div>
 	<form name="frm" method="get" action="reWriteS.do">
 	<input type="hidden" id="replyNo" name="replyNo" value="">
 		<table id="replyTbl">
@@ -62,5 +56,4 @@
 		<input type="hidden" value="${postNo}" name="postNo">
 	</form>
 	<!-- end of contents -->
-</body>
-</html>
+</div>
