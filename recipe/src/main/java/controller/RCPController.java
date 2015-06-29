@@ -11,11 +11,5 @@ public class RCPController {
 		
 		return "rcpWrite";		
 	}
-	@RequestMapping(value="rate")
-	public String rate() {
-		
-		return "rate";		
-	}
-	
 	
 }
