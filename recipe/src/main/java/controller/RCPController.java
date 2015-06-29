@@ -25,7 +25,7 @@ public class RCPController {
 	public String comment() {		
 		return "comment";		
 	}	
-	@RequestMapping(value="rate")
+	@RequestMapping(value="rate", method = RequestMethod.GET)
 	public String rate() {		
 		return "rate";		
 	}	
