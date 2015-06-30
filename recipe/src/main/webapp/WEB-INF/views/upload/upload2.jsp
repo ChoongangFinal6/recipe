@@ -5,8 +5,8 @@
 </head>
 <body>
 	<script type="text/javascript">	
-			window.opener.document.getElementById("image").innerHTML = "<img src=${path}/${name} alt='업로드 이미지' width='200px'>";
-			self.close();		
+	window.opener.cntplus('${path}', '${name}');
+	window.close();				
 	</script>
 </body>
 </html>

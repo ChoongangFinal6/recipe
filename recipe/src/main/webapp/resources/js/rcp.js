@@ -1,6 +1,13 @@
+var cnt;
+function cntplus(path, name) {
+	//document.getElementById("image"+cnt).innerHTML = "<img src=${path}/${name} alt='업로드 이미지' width='200px'>";
+	alert($("li").eq(cnt).find("div").attr("id"));
+	$("li").eq(cnt).find("div#image").html("<img src="+path+"/"+name+" alt='업로드 이미지' width='200px'>");
+}
+
 $(function() {
 	$( "div#div-content" ).on("click", ".removelist", (function( event ) {			
-		$(this).parent().parent().parent().parent().parent().remove();
+		$(this).parent().parent().parent().parent().parent().fadeOut(2000).remove();
 	}));
 
 	$( "div#div-content" ).on("click", ".addlist", (function( event ) {	
@@ -10,14 +17,19 @@ $(function() {
 				+		"<td style='padding-left: 10px;'><div contenteditable='true' class='content-table-div-right'></div></td>"
 				+"</tr>"
 				+"<tr>"
-				+		"<td style='padding-top: 10px;'><input type='button' value='사진 등록' id='upload'></td>"
+				+		"<td style='padding-top: 10px;'><input type='button' value='사진 등록' id='upload' class='upload-btn'></td>"
 				+		"<td align='right' style='padding-top: 10px;'><button style='margin-right: 10px;' class='addlist'>추가</button><button class='removelist'>삭제</button></td>"
 				+"</tr>"
 				+"</table></li>").next().fadeIn(1000);
 		
 		var position = $(this).offset();
-	    $('html, body').animate({scrollTop : position.top}, 1000);
-		
+	    $('html, body').animate({scrollTop : position.top}, 1000);		
+	}));	
+	
+	$( "div#div-content" ).on("click", ".upload-btn", (function( event ) {		
+		cnt = $(this).parent().parent().parent().parent().parent().index("li");
+		window.open("upload.html", "search",
+		"width=385,height=370,scrollbars=yes,resizeable=no,left=300,top=150");
 	}));
 });
 
@@ -26,14 +38,6 @@ function listRemove( $item ) {
 	$("ul#wcontent > li#removelist"+cnt).remove();
 	cnt--;
 };
-
-$(function() {
-	$("#upload").click(function() {				
-			window.open("upload.html", "search",
-			"width=385,height=370,scrollbars=yes,resizeable=no,left=300,top=150");						
-	});				
-});
-// 업로드 버튼
 
 $(function () {
 	$("#submit").click(function () {
