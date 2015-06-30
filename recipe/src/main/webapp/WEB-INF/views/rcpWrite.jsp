@@ -111,19 +111,27 @@
 		<h3 style="margin-left: 10px;">내용</h3>
 	</div>
 	<div style="border: 2px solid black; margin-top: -10px;"></div><p>
-
-	<div style="border: 2px solid black; overflow: auto; padding: 10px;" align="center">
-		<table style="border: 1px solid black; padding: 10px;">
-			<tr>
-				<td><div style="border: 1px solid black; width: 300px; height: 180px; display:table-cell;" id="image"></div></td>
-				<td><div style="border: 1px solid black; display:table-cell; height: 180px; width: 500px; padding: 10px;" contenteditable="true"></div></td>
-			</tr>
-			<tr>
-				<td><input type="button" value="사진 등록" id="upload"></td>
-				<td align="right"><button style="margin-right: 5px;">추가</button><button>삭제</button></td>
-			</tr>
-		</table>
-	</div>
+	
+	<div style="border: 2px solid black; overflow: auto; padding: 10px; vertical-align:middle;" align="center" id="div-content">
+		
+			<ul style="list-style:none;" id="wcontent">
+				<li>
+					<table class="content-table">
+						<tr>
+							<td><div id="image" class="content-table-div-left"></div></td>
+							<td style="padding-left: 10px;"><div contenteditable="true" class="content-table-div-right"></div></td>
+						</tr>
+						<tr>
+							<td style="padding-top: 10px;"><input type="button" value="사진 등록" id="upload"></td>
+							<td align="right" style="padding-top: 10px;">
+								<button style="margin-right: 10px;" class="addlist">추가</button>
+								<button class="removelist">삭제</button>
+							</td>
+						</tr>
+					</table>					
+				</li>
+			</ul>
+		</div>
 	</div>
 </div>
 </body>
