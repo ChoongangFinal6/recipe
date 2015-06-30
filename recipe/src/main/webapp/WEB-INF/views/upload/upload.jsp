@@ -19,9 +19,9 @@
 	    	 그밖의 경우 pop_container2 클래스와 하위 HTML 적용      -->
 	<div>
     	<!-- content -->
-		<form id="frm" action="upload2.html?cnt=${cnt+1}" method="post" enctype="multipart/form-data">
+		<form id="frm" action="upload2.html" method="post" enctype="multipart/form-data">
         <div>
-			<input type="file" name="Filedata">
+			<input type="file" name="upload">
             <p><strong>10MB</strong>이하의 이미지 파일만 등록할 수 있습니다.<br>(JPG, GIF, PNG, BMP)</p>
         </div>    
 		 </form>
