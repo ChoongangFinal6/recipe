@@ -55,6 +55,7 @@
   });
   </script>
 <body>
+<form action="result.html" id="frm">
 <div align="center" style="margin-top: 40px;">
 	<div style="width: 940px;">
 		<div style="width: 940px;" align="left">
@@ -122,7 +123,7 @@
 							<td style="padding-left: 10px;"><div contenteditable="true" class="content-table-div-right"></div></td>
 						</tr>
 						<tr>
-							<td style="padding-top: 10px;"><input type="button" value="사진 등록" id="upload"></td>
+							<td style="padding-top: 10px;"><input type="button" value="사진 등록" id="upload" class="upload-btn"></td>
 							<td align="right" style="padding-top: 10px;">
 								<button style="margin-right: 10px;" class="addlist">추가</button>
 								<button class="removelist">삭제</button>
@@ -133,6 +134,8 @@
 			</ul>
 		</div>
 	</div>
+	<input type="button" value="확인" style="margin-top: 30px;">
 </div>
+</form>
 </body>
 </html>

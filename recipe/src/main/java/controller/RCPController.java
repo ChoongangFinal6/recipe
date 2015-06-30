@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.oreilly.servlet.MultipartRequest;
-
 import fileupload.FileUpload;
 
 @Controller
@@ -20,6 +18,11 @@ public class RCPController {
 	@RequestMapping(value="rcpWrite", method = RequestMethod.GET)
 	public String rcpWrite() {		
 		return "rcpWrite";		
+	}
+	
+	@RequestMapping(value="result", method = RequestMethod.GET)
+	public String rcsult() {		
+		return "result";		
 	}
 	
 	@RequestMapping(value="upload", method = RequestMethod.GET)
