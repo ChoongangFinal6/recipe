@@ -18,51 +18,48 @@
 		
 		<div style="border: 1px solid black; margin-top: 15px; padding: 10px;">
 		<span style="font-size: 15px; margin-right: 20px;">제목</span>
-		<input type="text" id="title" style="width: 50%; height: 25px;" name="name">
+		<input type="text" id="title" style="width: 50%; height: 25px;" name="name" required="required">
 		
-		<input type="checkbox" name="oven" value="1"> 오븐
+		<input type="checkbox" name="oven" value="Y"> 오븐
 		
 		<div>
-			<select name="country">
-				<option>국가</option>
-				<option value="america">미국</option>
-				<option value="england">영국</option>
-				<option value="korea">한국</option>
-				<option value="china">중국</option>
+			<select name="country" class="selectbox">			
+				<option value="korea">한식</option>
+				<option value="china">중식</option>
+				<option value="japan">일식</option>
+				<option value="europe">양식</option>
 			</select>
 			
-			<select name="size">
-				<option>음식량</option>
+			<select name="amount" class="selectbox">			
 				<option value="1">1인</option>
-				<option value="2">1~2인</option>
-				<option value="3">2~3인</option>
-				<option value="4">3~4인</option>
+				<option value="2">2인</option>
+				<option value="3">3인</option>
+				<option value="4">4인</option>
 			</select>
 			
-			<select name="difficulty">
-				<option>난이도</option>
-				<option value="high">상</option>
-				<option value="middle">중</option>
-				<option value="low">하</option>
+			<select name="difficulty" class="selectbox">			
+				<option value="3">상</option>
+				<option value="2">중</option>
+				<option value="1">하</option>
 			</select>
 		</div>
 		
 		<div>걸리는 시간 
-		<select name="time-d">
+		<select name="time-d" class="selectbox">
 			<option value="0">0</option>
 			<option value="1">1</option>
 			<option value="2">2</option>
 			<option value="3">3</option>
 		</select> 일 
 		
-		<select name="time-h">
+		<select name="time-h" class="selectbox">
 			<option value="0">0</option>
 			<option value="1">1</option>
 			<option value="2">2</option>
 			<option value="3">3</option>
 		</select> 시간 
 		
-		<select name="time-m">
+		<select name="time-m" class="selectbox">
 			<option value="0">0</option>
 			<option value="1">1</option>
 			<option value="2">2</option>
@@ -82,12 +79,11 @@
 		</div>
 		<p>
 		<div>
-			<ul>
+			<ul id="ul-material">
 				
 			</ul>
 		</div>		
 	</div>
-	
 	<div style="width: 940px;" align="left">
 		<h3 style="margin-left: 10px;">내용</h3>
 	</div>
@@ -109,8 +105,7 @@
 								<input type="button" class="removelist" value="삭제">								
 							</td>
 						</tr>						
-					</table>	
-						
+					</table>							
 				</li>
 			</ul>
 		</div>
@@ -119,6 +114,7 @@
 </div>
 <div id="sendImage"></div>
 <div id="sendText"></div>
+<div id="sendLi"></div>
 </form>
 </body>
 </html>

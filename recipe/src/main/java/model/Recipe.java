@@ -3,37 +3,30 @@ package model;
 import java.util.Date;
 
 public class Recipe {
-	private String no;
+	private int no;
 	private String email;
 	private String country;
 	private int time;
 	private String material;
 	private String name;
 	private int difficulty;
-	private int size;
+	private int amount;
 	private String oven;
 	private Date writeDate;
-	private String image;
-	
-	private String sendImage;
-	private String sendText;
-	
-	public String getSendImage() {
-		return sendImage;
-	}
-	public void setSendImage(String sendImage) {
-		this.sendImage = sendImage;
-	}
+	private String image;	
+
+	private String sendText;	
+
 	public String getSendText() {
 		return sendText;
 	}
 	public void setSendText(String sendText) {
 		this.sendText = sendText;
 	}
-	public String getNo() {
+	public int getNo() {
 		return no;
 	}
-	public void setNo(String no) {
+	public void setNo(int no) {
 		this.no = no;
 	}
 	public String getEmail() {
@@ -73,10 +66,10 @@ public class Recipe {
 		this.difficulty = difficulty;
 	}
 	public int getSize() {
-		return size;
+		return amount;
 	}
 	public void setSize(int size) {
-		this.size = size;
+		this.amount = size;
 	}
 	public String getOven() {
 		return oven;
@@ -95,5 +88,5 @@ public class Recipe {
 	}
 	public void setImage(String image) {
 		this.image = image;
-	}		
+	}	
 }

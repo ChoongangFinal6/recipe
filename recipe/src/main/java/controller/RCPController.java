@@ -54,11 +54,42 @@ public class RCPController {
 		out.print(str);
 		
 		return null;
-	}
-	
+	}	
+
 	@RequestMapping(value="result", method = RequestMethod.POST)
-	public String result(@ModelAttribute("recipe") Recipe recipe , BindingResult result, Model model) {		
-		model.addAttribute("recipe", recipe);	
+	public String result(@ModelAttribute("recipe") Recipe recipe , BindingResult result, Model model, HttpServletRequest req, HttpServletResponse rep) {
+		recipe.setEmail("ttt@choongang.com");
+		
+		if(recipe.getOven()!="Y") {
+			recipe.setOven("N");
+		}		
+				
+		int day = Integer.parseInt(req.getParameter("time-d"));
+		int hour = Integer.parseInt(req.getParameter("time-h"));
+		int minute = Integer.parseInt(req.getParameter("time-m"));		
+		int time = day * 1440 + hour * 60 + minute;
+		recipe.setTime(time);		 
+		
+		int sendLi = Integer.parseInt(req.getParameter("sendLi"));	
+		String[] Mmain = new String[sendLi];
+		String[] Munit = new String[sendLi];
+		String[] Mamount = new String[sendLi];
+		String material = "";			
+		
+		for (int i=0; i<sendLi; i++) {
+			Mmain[i] = req.getParameter("Mmain"+i);			
+			Munit[i] = req.getParameter("Munit"+i);
+			Mamount[i] = req.getParameter("Mamount"+i);				
+			
+			if(i==sendLi-1) {
+				material += Mmain[i]+"," + Munit[i]+"," + Mamount[i];
+			} else {
+				material += Mmain[i]+"," + Munit[i]+"," + Mamount[i]+ ",";
+			}
+		}		
+		recipe.setMaterial(material);		
+
+		rs.insert(recipe);
 		return "result";		
 	}	
 	

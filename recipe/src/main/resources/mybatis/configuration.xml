@@ -5,10 +5,12 @@
 	<typeAliases>
 		<typeAlias alias="Rating" type="model.Rating" />
 		<typeAlias alias="Material" type="model.Material" />
+		<typeAlias alias="Recipe" type="model.Recipe" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="mybatis/Rating.xml" />
 		<mapper resource="mybatis/Material.xml" />
+		<mapper resource="mybatis/Recipe.xml" />
 	</mappers>
 </configuration>
 

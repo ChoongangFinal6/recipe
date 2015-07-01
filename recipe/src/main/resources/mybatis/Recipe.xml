@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Recipe">
+<resultMap type="Recipe" id="Recipelist">
+	<result property="no" column="no"/>
+	<result property="email" column="email"/>
+	<result property="country" column="country"/>
+	<result property="time" column="time"/>
+	<result property="material" column="material"/>
+	<result property="name" column="name"/>
+	<result property="difficulty" column="difficulty"/>
+	<result property="amount" column="amount"/>
+	<result property="oven" column="oven"/>
+	<result property="writeDate" column="writeDate"/>
+	<result property="image" column="image"/>
+</resultMap>
+
+<insert id="insert" parameterType="Recipe">
+	<selectKey keyProperty="no" resultType="int" order="BEFORE">
+		select max(nvl(no, 0))+1 from Recipe
+	</selectKey>
+	insert into Recipe values (#{no}, #{email}, #{country}, #{time}, #{material}, #{name}, #{difficulty}, #{amount}, #{oven}, sysdate, 'fdsa')
+</insert>
+
+</mapper>

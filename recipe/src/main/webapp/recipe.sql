@@ -20,3 +20,35 @@ insert into MATERIAL values (9, '상추', 'vegetable');
 insert into MATERIAL values (10, 'kimchi', 'vegetable');
 
 
+
+-- 단위
+CREATE TABLE unit (
+	no       INTEGER      NOT NULL, -- 일련번호
+	unit     VARCHAR2(10) NOT NULL, -- 단위
+	unitCode VARCHAR2(10) NOT NULL  -- 단위코드
+);
+
+
+drop table recipe;
+
+-- 레시피
+CREATE TABLE recipe (
+	no         INTEGER       primary key, -- 글번호
+	email      VARCHAR2(100) NOT NULL, -- 아이디(이메일)
+	country   VARCHAR2(50)  NULL,     -- 국가
+	time       INTEGER       NOT NULL, -- 시간
+	material   VARCHAR2(500) NOT NULL, -- 재료
+	name       VARCHAR2(255) NOT NULL, -- 요리명
+	difficulty INTEGER       NULL,     -- 난이도
+	amount       INTEGER       NULL,     -- 인분
+	oven       VARCHAR2(5)   NULL,     -- 오븐
+	writeDate  DATE          NOT NULL, -- 작성일
+	image      VARCHAR2(50)  NULL      -- 사진
+);
+
+select * from recipe;
+
+insert into recipe values (1, 'ttt@choongang.com', '한식', 120, '돼지고기', '김치찌개', 2, 2, 'true', sysdate, '21421421.jpg');
+
+
+
