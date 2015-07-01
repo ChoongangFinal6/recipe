@@ -1,28 +1,59 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Calendar;
+import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import model.Material;
 import model.Recipe;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import service.RecipeService;
 import fileupload.FileUpload;
 
 @Controller
-public class RCPController {	
+public class RCPController {
+	@Autowired
+	RecipeService rs;
 	
 	@RequestMapping(value="rcpWrite", method = RequestMethod.GET)
 	public String rcpWrite() {		
 		return "rcpWrite";		
+	}
+	
+	@RequestMapping(value="material", method=RequestMethod.GET)
+	public String material(HttpServletRequest req, HttpServletResponse rep, Model model) throws Exception  {
+		String material = req.getParameter("term");		
+		List<Material> mlist = rs.msearch(material);
+		String str = "[";
+		
+		for(int i=0; i<mlist.size(); i++) {			
+			if(i== mlist.size()-1) {
+				str += "\""+mlist.get(i).getMaterial() + "\"";
+			} else {
+				str += "\""+mlist.get(i).getMaterial() + "\",";
+			}			
+		}
+		str += "]";
+		
+		rep.setContentType("text/html; charset=utf-8");
+		PrintWriter out = rep.getWriter();		
+		out.print(str);
+		
+		return null;
 	}
 	
 	@RequestMapping(value="result", method = RequestMethod.POST)

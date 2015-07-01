@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Material">
+<resultMap type="Material" id="Materiallist">
+	<result property="no" column="no"/>
+	<result property="material" column="material"/>
+	<result property="category" column="category"/>
+</resultMap>
+
+<select id="msearch" parameterType="String" resultMap="Materiallist">
+	select * from Material where material like '%'||#{material}||'%'
+</select>
+
+</mapper>

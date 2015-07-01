@@ -4,9 +4,11 @@
 <configuration>
 	<typeAliases>
 		<typeAlias alias="Rating" type="model.Rating" />
+		<typeAlias alias="Material" type="model.Material" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="mybatis/Rating.xml" />
+		<mapper resource="mybatis/Material.xml" />
 	</mappers>
 </configuration>
 
