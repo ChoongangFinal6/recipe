@@ -3,10 +3,15 @@ package controller;
 import java.io.IOException;
 import java.util.Calendar;
 
+import model.Recipe;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -20,10 +25,11 @@ public class RCPController {
 		return "rcpWrite";		
 	}
 	
-	@RequestMapping(value="result", method = RequestMethod.GET)
-	public String rcsult() {		
+	@RequestMapping(value="result", method = RequestMethod.POST)
+	public String result(@ModelAttribute("recipe") Recipe recipe , BindingResult result, Model model) {		
+		model.addAttribute("recipe", recipe);	
 		return "result";		
-	}
+	}	
 	
 	@RequestMapping(value="upload", method = RequestMethod.GET)
 	public String upload() {		

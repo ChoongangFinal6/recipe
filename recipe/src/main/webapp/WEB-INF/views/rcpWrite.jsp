@@ -25,7 +25,7 @@
       })
       .autocomplete({
         source: function( request, response ) {
-          $.getJSON( "search.jsp", {
+          $.getJSON( "rcpWrite.jsp", {
             term: extractLast( request.term )
           }, response );
         },
@@ -53,9 +53,16 @@
         }
       });
   });
+  
+  $(function() {
+	    $( "ul#wcontent" ).sortable({
+	      revert: true,
+	      cancel: "div.content-table-div-right"
+	    });	    
+	});
   </script>
 <body>
-<form action="result.html" id="frm">
+<form action="result.html" id="frm" method="post">
 <div align="center" style="margin-top: 40px;">
 	<div style="width: 940px;">
 		<div style="width: 940px;" align="left">
@@ -66,27 +73,55 @@
 		
 		<div style="border: 1px solid black; margin-top: 15px; padding: 10px;">
 		<span style="font-size: 15px; margin-right: 20px;">제목</span>
-		<input type="text" id="title" style="width: 50%; height: 25px;">
+		<input type="text" id="title" style="width: 50%; height: 25px;" name="name">
 		
-		<select>
-			<option>국가</option>
-		</select>
+		<input type="checkbox" name="oven" value="1"> 오븐
 		
-		<select>
-			<option>1인분</option>
-		</select>
+		<div>
+			<select name="country">
+				<option>국가</option>
+				<option value="america">미국</option>
+				<option value="england">영국</option>
+				<option value="korea">한국</option>
+				<option value="china">중국</option>
+			</select>
+			
+			<select name="size">
+				<option>음식량</option>
+				<option value="1">1인</option>
+				<option value="2">1~2인</option>
+				<option value="3">2~3인</option>
+				<option value="4">3~4인</option>
+			</select>
+			
+			<select name="difficulty">
+				<option>난이도</option>
+				<option value="high">상</option>
+				<option value="middle">중</option>
+				<option value="low">하</option>
+			</select>
+		</div>
 		
 		<div>걸리는 시간 
-		<select>
-			<option>1</option>
+		<select name="time-d">
+			<option value="0">0</option>
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
 		</select> 일 
 		
-		<select>
-			<option>1</option>
+		<select name="time-h">
+			<option value="0">0</option>
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
 		</select> 시간 
 		
-		<select>
-			<option>30</option>
+		<select name="time-m">
+			<option value="0">0</option>
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
 		</select> 분 
 		</div>
 	</div>
@@ -98,7 +133,7 @@
 	<div style="border: 1px solid black; padding: 10px;">
 		<div class="ui-widget">
 		  <label for="material">재료 검색</label>
-		  <input id="material" size="50">
+		  <input id="material" size="50" name="material">
 		</div>
 		<p>
 		<div>
@@ -120,22 +155,25 @@
 					<table class="content-table">
 						<tr>
 							<td><div id="image" class="content-table-div-left"></div></td>
-							<td style="padding-left: 10px;"><div contenteditable="true" class="content-table-div-right"></div></td>
+							<td style="padding-left: 10px;"><div contenteditable="true" class="content-table-div-right" id="content"></div></td>
 						</tr>
 						<tr>
 							<td style="padding-top: 10px;"><input type="button" value="사진 등록" id="upload" class="upload-btn"></td>
 							<td align="right" style="padding-top: 10px;">
-								<button style="margin-right: 10px;" class="addlist">추가</button>
-								<button class="removelist">삭제</button>
+								<input type="button" style="margin-right: 10px;" class="addlist" value="추가">
+								<input type="button" class="removelist" value="삭제">								
 							</td>
-						</tr>
-					</table>					
+						</tr>						
+					</table>	
+						
 				</li>
 			</ul>
 		</div>
 	</div>
-	<input type="button" value="확인" style="margin-top: 30px;">
+	<input type="button" id="send" value="확인" style="margin-top: 30px;">
 </div>
+<div id="sendImage"></div>
+<div id="sendText"></div>
 </form>
 </body>
 </html>
