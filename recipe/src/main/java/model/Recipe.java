@@ -14,6 +14,7 @@ public class Recipe {
 	private String oven;
 	private Date writeDate;
 	private String image;	
+	private int rate;
 
 	private String sendText;	
 
@@ -88,5 +89,11 @@ public class Recipe {
 	}
 	public void setImage(String image) {
 		this.image = image;
+	}
+	public int getRate() {
+		return rate;
+	}
+	public void setRate(int rate) {
+		this.rate = rate;
 	}	
 }

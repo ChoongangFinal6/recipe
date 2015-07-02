@@ -10,7 +10,7 @@
 <body>
 
 ${recipe.name }
-${recipe.sendImage }
+${recipe.image }
 ${recipe.sendText } 
 
 

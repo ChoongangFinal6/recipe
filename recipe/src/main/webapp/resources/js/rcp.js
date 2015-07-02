@@ -134,12 +134,7 @@
         $( "#unit" ).toggle();
       });
     });
-
-
-
-/////////////////////////////////////////////////////////////////////////////////////
-    
-    
+// 셀렉트 박스 자동 완성 기능    
     
 $(function() {
     function split( val ) {
@@ -194,52 +189,76 @@ $(function() {
         }
       });
   });
+// 재료 자동 완성 기능
 
 $(function() {	
 	$( "ul#wcontent" ).sortable({
 	      revert: true,
 	      cancel: "div.content-table-div-right"
-	    });	 
+	    });
+	// 본문 내용 이동 가능
 	
-	$("#send").click(function() {
+	$("#send").click(function() {	
+		if($("input#title").val()==null || $("input#title").val()=="") {
+			alert("요리명을 입력해주세요.");
+			$("input#title").focus();
+			return false;
+		}
+		
+		if($("#ul-material > li").length==0) {
+			alert("재료는 최소 한개 이상은 입력되어야합니다.");
+			$("input#material").focus();
+			return false;
+		}
+		
 		for (var i=0; i<$("#wcontent > li").length; i++) {
-			$("#sendImage").append(function() {		
-				var img = $("#wcontent > li").eq(i).find("input#sendImage").val();
-				var sendImage = "<input type='hidden' name='image' value= '" + img+ "'>";			
-				return sendImage;
-			});				
+			$("#wcontent > li").eq(i).find("#image").attr("name", "image"+i);
+			// 이미지 전송 전 작업
 			
 			$("#sendText").append(function() {		
 				var text = $("#wcontent > li").eq(i).find("div").parent().next().find("div").html();
 				var sendText = "<input type='hidden' name='sendText' value= '" + text+ "'>";			
 				return sendText;
 			});			
-		}
+			// 텍스트 모아서 전송
+		}	
 		
 		for(var i=0; i<$("#ul-material > li").length; i++) {
 			$("#ul-material > li").eq(i).find("#Mmain").attr("name", "Mmain"+i);
 			$("#ul-material > li").eq(i).find("#Munit").attr("name", "Munit"+i);
 			$("#ul-material > li").eq(i).find("#Mamount").attr("name", "Mamount"+i);			
-		}		
+		}
+		// 재료 전송 전 작업
 		
 		$("#sendLi").append(function() {		
 			var numLi = $("#ul-material > li").length;
 			var sendLi = "<input type='hidden' name='sendLi' value= '" + numLi+ "'>";			
 			return sendLi;
-		});			
+		});		
+		// 재료가 몇개 들어갔는지 확인
+		
+		$("#imageLi").append(function() {		
+			var numLi = $("#wcontent > li").length;
+			var imageLi = "<input type='hidden' name='imageLi' value= '" + numLi+ "'>";			
+			return imageLi;
+		});
+		// 이미지가 몇번 들어갔는지 확인
 		$("#frm").submit();
 	});
 		
 	$("#submit").click(function () {
 		$("#frm").submit(); 
 	});
+	// 업로드 창
 	
 	$("#cancel").click(function() {	
 		window.close();
 	});
+	// 업로드 창
 	
 	$( "div#div-content" ).on("click", ".removelist", (function( event ) {			
 		$(this).parent().parent().parent().parent().parent().remove();
+		// 본문 li 제거
 	}));
 
 	$( "div#div-content" ).on("click", ".addlist", (function( event ) {	
@@ -254,25 +273,23 @@ $(function() {
 				+		"<input type='button' class='removelist' value='삭제'></td>"
 				+"</tr>"
 				+"</table></li>").next().fadeIn(1000);
+		// 본문 li 추가
 		
 		var position = $(this).offset();
-	    $('html, body').animate({scrollTop : position.top}, 1000);		
+	    $('html, body').animate({scrollTop : position.top}, 1000);
+	    // 본문 li 추가 하면 스크롤 이동
 	}));	
 	
 	$( "div#div-content" ).on("click", ".upload-btn", (function( event ) {		
 		cnt = $(this).parent().parent().parent().parent().parent().index("li");
 		window.open("upload.html", "search",
 		"width=385,height=370,scrollbars=yes,resizeable=no,left=300,top=150");
+		// 업로드 창 생성
 	}));
 });
 
 var cnt;
 function cntplus(path, name) {
-	$("li").eq(cnt).find("div#image").html("<input type='hidden' id='sendImage' value='"+name+"'><img src="+path+"/"+name+" alt='업로드 이미지' width='200px'>");
+	$("li").eq(cnt).find("div#image").html("<input type='hidden' name='image0' id='image' value='"+name+"'><img src="+path+"/"+name+" alt='업로드 이미지' width='200px'>");
 }
-
-function listRemove( $item ) {		
-	alert($item.last().attr("class"));
-	$("ul#wcontent > li#removelist"+cnt).remove();
-	cnt--;
-}
+// 이미지명 전송 전 작업 및 li에 이미지 추가

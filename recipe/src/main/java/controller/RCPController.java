@@ -54,41 +54,39 @@ public class RCPController {
 		out.print(str);
 		
 		return null;
-	}	
+	}
+	// 재료 자동 완성 기능
 
-	@RequestMapping(value="result", method = RequestMethod.POST)
+	@RequestMapping(value="rcpWrite", method = RequestMethod.POST)
 	public String result(@ModelAttribute("recipe") Recipe recipe , BindingResult result, Model model, HttpServletRequest req, HttpServletResponse rep) {
 		recipe.setEmail("ttt@choongang.com");
+		// 아이디 : 이메일
 		
 		if(recipe.getOven()!="Y") {
 			recipe.setOven("N");
-		}		
+		}
+		// 오븐
 				
 		int day = Integer.parseInt(req.getParameter("time-d"));
 		int hour = Integer.parseInt(req.getParameter("time-h"));
 		int minute = Integer.parseInt(req.getParameter("time-m"));		
 		int time = day * 1440 + hour * 60 + minute;
-		recipe.setTime(time);		 
+		recipe.setTime(time);		
+		// 시간
 		
-		int sendLi = Integer.parseInt(req.getParameter("sendLi"));	
-		String[] Mmain = new String[sendLi];
-		String[] Munit = new String[sendLi];
-		String[] Mamount = new String[sendLi];
-		String material = "";			
-		
-		for (int i=0; i<sendLi; i++) {
-			Mmain[i] = req.getParameter("Mmain"+i);			
-			Munit[i] = req.getParameter("Munit"+i);
-			Mamount[i] = req.getParameter("Mamount"+i);				
-			
-			if(i==sendLi-1) {
-				material += Mmain[i]+"," + Munit[i]+"," + Mamount[i];
-			} else {
-				material += Mmain[i]+"," + Munit[i]+"," + Mamount[i]+ ",";
-			}
-		}		
+		int MLi = Integer.parseInt(req.getParameter("sendLi"));	
+		String material = rs.material(MLi, req);		
 		recipe.setMaterial(material);		
-
+		System.out.println(material);
+		// 재료
+		
+		int Ili = Integer.parseInt(req.getParameter("imageLi"));
+		System.out.println(Ili);
+		String image = rs.image(Ili, req);
+		recipe.setImage(image);
+		// 이미지
+				
+		System.out.println(image);
 		rs.insert(recipe);
 		return "result";		
 	}	

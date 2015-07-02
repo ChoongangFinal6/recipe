@@ -43,12 +43,13 @@ CREATE TABLE recipe (
 	amount       INTEGER       NULL,     -- 인분
 	oven       VARCHAR2(5)   NULL,     -- 오븐
 	writeDate  DATE          NOT NULL, -- 작성일
-	image      VARCHAR2(50)  NULL      -- 사진
+	image      VARCHAR2(50)  NULL,      -- 사진
+	rate 			INTEGER			NULL			-- 평점
 );
 
 select * from recipe;
 
-insert into recipe values (1, 'ttt@choongang.com', '한식', 120, '돼지고기', '김치찌개', 2, 2, 'true', sysdate, '21421421.jpg');
+insert into recipe values (1, 'ttt@choongang.com', '한식', 120, '돼지고기', '김치찌개', 2, 2, 'true', sysdate, '21421421.jpg', 5);
 
 
 
