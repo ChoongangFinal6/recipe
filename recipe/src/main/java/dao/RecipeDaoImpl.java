@@ -65,4 +65,11 @@ public class RecipeDaoImpl implements RecipeDao{
 		}		
 		return image;
 	}
+
+	@Override
+	public Recipe select(int no) {
+		// TODO Auto-generated method stub		
+		Recipe recipe = (Recipe) session.selectOne("recipe", no);		
+		return recipe;
+	}
 }

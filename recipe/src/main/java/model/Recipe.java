@@ -66,10 +66,10 @@ public class Recipe {
 	public void setDifficulty(int difficulty) {
 		this.difficulty = difficulty;
 	}
-	public int getSize() {
+	public int getAmount() {
 		return amount;
 	}
-	public void setSize(int size) {
+	public void setAmount(int size) {
 		this.amount = size;
 	}
 	public String getOven() {

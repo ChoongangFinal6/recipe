@@ -17,6 +17,10 @@
 	<result property="rate" column="rate"/>
 </resultMap>
 
+<select id="recipe" parameterType="int" resultType="Recipe">
+	select * from Recipe where no = #{no}
+</select>
+
 <insert id="insert" parameterType="Recipe">
 	<selectKey keyProperty="no" resultType="int" order="BEFORE">
 		select max(nvl(no, 0))+1 from Recipe

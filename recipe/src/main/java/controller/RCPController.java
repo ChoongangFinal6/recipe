@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -32,6 +33,40 @@ public class RCPController {
 	@RequestMapping(value="rcpWrite", method = RequestMethod.GET)
 	public String rcpWrite() {		
 		return "rcpWrite";		
+	}
+	
+	@RequestMapping(value="rcpUpdate", method = RequestMethod.GET)
+	public String rcpUpdate(Model model) {
+		int no = 4;	
+		Recipe recipe = rs.rcpSelect(no);
+		model.addAttribute(recipe);
+		
+		int time = recipe.getTime();
+		int day, hour, minute;
+		day = time / 1440;
+		hour = (time % 1440)/60;
+		minute = (time % 1440)%60;
+		
+		model.addAttribute("day", day);
+		model.addAttribute("hour", hour);
+		model.addAttribute("minute", minute);
+		// 꺼내올 시간 계산
+		
+		String material = recipe.getMaterial();
+		String[] materialList = material.split(",");
+		List<String[]> mList = new ArrayList<String[]>();
+		for(int i=0; i<materialList.length/3; i++) {
+			String[] str= {materialList[i*3], materialList[i*3+1], materialList[i*3+2]};
+			mList.add(str);			
+		}
+		model.addAttribute("mList", mList);
+		//재료 전송		
+
+		int mli = materialList.length/3;
+		model.addAttribute("mli", mli);
+		// 재료 li 갯수 전송
+		
+		return "rcpUpdate";		
 	}
 	
 	@RequestMapping(value="material", method=RequestMethod.GET)

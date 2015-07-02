@@ -49,7 +49,10 @@ CREATE TABLE recipe (
 
 select * from recipe;
 
-insert into recipe values (1, 'ttt@choongang.com', '한식', 120, '돼지고기', '김치찌개', 2, 2, 'true', sysdate, '21421421.jpg', 5);
+insert into recipe values (1, 'ttt@choongang.com', 'korea', 120, '돼지고기', '김치찌개', 2, 2, 'Y', sysdate, '21421421.jpg', 5);
+insert into recipe values (2, 'ttt@choongang.com', 'china', 120, '돼지고기,spoon,1,닭고기,spoon,2', '김치찌개', 2, 2, 'Y', sysdate, '21421421.jpg', 5);
+insert into recipe values (3, 'ttt@choongang.com', 'china', 120, '돼지고기,spoon,1,닭고기,spoon,2', '김치찌개', 2, 2, 'Y', sysdate, '21421421.jpg', 5);
+insert into recipe values (4, 'ttt@choongang.com', 'china', 120, '돼지고기,spoon,1,소고기,spoon,2', '김치찌개', 2, 2, 'Y', sysdate, '21421421.jpg', 5);
 
 
 
