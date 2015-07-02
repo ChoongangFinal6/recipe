@@ -3,3 +3,5 @@
 .content-table {border: 1px solid black; padding: 10px; margin-left: -35px; margin-top: 20px;}
 .content-table-div-left {border: 1px solid black; width: 200px; height: 150; padding: 5px;}
 .content-table-div-right {border: 1px solid black; height: 140; width: 500px; padding: 10px; overflow: auto;}
+
+#ul-material li {list-style: none;}
