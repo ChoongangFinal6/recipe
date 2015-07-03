@@ -43,13 +43,25 @@ CREATE TABLE recipe (
 	amount       INTEGER       NULL,     -- 인분
 	oven       VARCHAR2(5)   NULL,     -- 오븐
 	writeDate  DATE          NOT NULL, -- 작성일
-	image      VARCHAR2(50)  NULL,      -- 사진
+	lastimage VARCHAR2(50) NULL, -- 마지막 사진
 	rate 			INTEGER			NULL			-- 평점
 );
 
 select * from recipe;
 
-insert into recipe values (1, 'ttt@choongang.com', '한식', 120, '돼지고기', '김치찌개', 2, 2, 'true', sysdate, '21421421.jpg', 5);
+insert into recipe values (1, 'ttt@choongang.com', 'china', 120, '돼지고기,spoon,1,닭고기,spoon,2', '김치찌개', 2, 2, 'Y', sysdate, '마지막 사진', 0);
 
 
 
+drop table content;
+
+CREATE TABLE content (
+	postNo		INTEGER	 NOT NULL,
+	no		INTEGER		NOT NULL, 
+	image		VARCHAR2(500)		NULL,
+	content		VARCHAR2(1000)		NULL	
+);
+
+select * from content;
+
+insert into content values (1, 1, '사진', '내용');

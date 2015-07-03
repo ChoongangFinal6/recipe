@@ -44,4 +44,19 @@ public class RecipeServiceImpl implements RecipeService{
 		// TODO Auto-generated method stub
 		return rd.detail(no);
 	}
+	public Recipe rcpSelect(int no) {		
+		return rd.select(no);
+	}
+
+	@Override
+	public void rcpUpdate(Recipe recipe) {
+		rd.update(recipe);
+		
+	}
+
+	@Override
+	public String lastimage(int ili, HttpServletRequest req) {
+		return rd.lastimage(ili, req);
+	}
+
 }
