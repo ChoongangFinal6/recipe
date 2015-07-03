@@ -50,4 +50,9 @@ public class RecipeServiceImpl implements RecipeService{
 		
 	}
 
+	@Override
+	public String lastimage(int ili, HttpServletRequest req) {
+		return rd.lastimage(ili, req);
+	}
+
 }

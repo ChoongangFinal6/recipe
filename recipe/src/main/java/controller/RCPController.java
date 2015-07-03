@@ -175,12 +175,19 @@ public class RCPController {
 		recipe.setMaterial(material);				
 		// 재료
 		
-		int Ili = Integer.parseInt(req.getParameter("imageLi"));		
-		String image = rs.image(Ili, req);
-		recipe.setLastimage(image);
+		int ili = Integer.parseInt(req.getParameter("imageLi"));	
+		// 내용이 몇칸인지 받아옴
+		String lastimage = rs.lastimage(ili, req);
+		recipe.setLastimage(lastimage);
 		// 이미지		
 		
-		rs.insert(recipe);
+		rs.insert(recipe);		
+		
+		////////////////////////Content//////////////////////////
+		
+		String image = rs.image(ili, req);
+		
+		
 		return "result";		
 	}	
 	

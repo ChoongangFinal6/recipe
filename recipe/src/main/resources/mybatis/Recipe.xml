@@ -36,7 +36,7 @@
 	where no = #{no}		
 </update>
 
-<insert id="insert" parameterType="Recipe">
+<insert id="insert" parameterType="Recipe" keyProperty="no">
 	<selectKey keyProperty="no" resultType="int" order="BEFORE">
 		select max(nvl(no, 0))+1 from Recipe
 	</selectKey>
