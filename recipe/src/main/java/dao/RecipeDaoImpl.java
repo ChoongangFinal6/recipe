@@ -51,7 +51,7 @@ public class RecipeDaoImpl implements RecipeDao{
 
 	@Override
 	public String image(int ili, HttpServletRequest req) {
-		String image="";				
+		String image="";			
 		
 		for (int i=0; i<ili; i++) {			
 			if(i==ili-1) {
@@ -66,5 +66,28 @@ public class RecipeDaoImpl implements RecipeDao{
 	@Override
 	public Recipe detail(String no) {
 		return session.selectOne("detail", no);
+	}
+	public Recipe select(int no) {		
+		Recipe recipe = (Recipe) session.selectOne("select", no);		
+		return recipe;
+	}
+
+	@Override
+	public void update(Recipe recipe) {
+		session.update("update", recipe);
+		
+	}
+
+	@Override
+	public String lastimage(int ili, HttpServletRequest req) {
+		String lastimage="";
+		
+		for (int i=0; i<ili; i++) {			
+			if(i==ili-1) {
+				lastimage += req.getParameter("image"+i);				
+			}
+		}
+		
+		return lastimage;
 	}
 }
