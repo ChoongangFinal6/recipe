@@ -13,7 +13,7 @@ public class Recipe {
 	private int amount;
 	private String oven;
 	private Date writeDate;
-	private String image;	
+	private String lastimage;
 	private int rate;
 
 	private String sendText;	
@@ -84,16 +84,16 @@ public class Recipe {
 	public void setWriteDate(Date writeDate) {
 		this.writeDate = writeDate;
 	}
-	public String getImage() {
-		return image;
-	}
-	public void setImage(String image) {
-		this.image = image;
-	}
 	public int getRate() {
 		return rate;
 	}
 	public void setRate(int rate) {
 		this.rate = rate;
-	}	
+	}
+	public String getLastimage() {
+		return lastimage;
+	}
+	public void setLastimage(String lastimage) {
+		this.lastimage = lastimage;
+	}
 }

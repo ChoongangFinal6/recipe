@@ -54,22 +54,29 @@ public class RecipeDaoImpl implements RecipeDao{
 	@Override
 	public String image(int ili, HttpServletRequest req) {
 		// TODO Auto-generated method stub
-		String image="";				
+		String image="";		
+		String lastimage="";
 		
 		for (int i=0; i<ili; i++) {			
 			if(i==ili-1) {
-				image += req.getParameter("image"+i);				
+				image += req.getParameter("image"+i);
+				lastimage = req.getParameter("image"+i);
 			} else {
 				image += req.getParameter("image"+i) + ",";
 			}
 		}		
-		return image;
+		return lastimage;
 	}
 
 	@Override
-	public Recipe select(int no) {
-		// TODO Auto-generated method stub		
-		Recipe recipe = (Recipe) session.selectOne("recipe", no);		
+	public Recipe select(int no) {		
+		Recipe recipe = (Recipe) session.selectOne("select", no);		
 		return recipe;
+	}
+
+	@Override
+	public void update(Recipe recipe) {
+		session.update("update", recipe);
+		
 	}
 }

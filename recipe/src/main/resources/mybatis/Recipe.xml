@@ -13,19 +13,34 @@
 	<result property="amount" column="amount"/>
 	<result property="oven" column="oven"/>
 	<result property="writeDate" column="writeDate"/>
+	<result property="content" column="content"/>
 	<result property="image" column="image"/>
+	<result property="lastimage" column="lastimage"/>
 	<result property="rate" column="rate"/>
 </resultMap>
 
-<select id="recipe" parameterType="int" resultType="Recipe">
+<select id="select" parameterType="int" resultType="Recipe">
 	select * from Recipe where no = #{no}
 </select>
+
+<update id="update" parameterType="Recipe" >
+	update Recipe set
+	country = #{country},
+	time = #{time},
+	material = #{material},
+	name = #{name},
+	difficulty = #{difficulty},
+	amount = #{amount},
+	oven = #{oven}, 
+	lastimage = #{lastimage}
+	where no = #{no}		
+</update>
 
 <insert id="insert" parameterType="Recipe">
 	<selectKey keyProperty="no" resultType="int" order="BEFORE">
 		select max(nvl(no, 0))+1 from Recipe
 	</selectKey>
-	insert into Recipe values (#{no}, #{email}, #{country}, #{time}, #{material}, #{name}, #{difficulty}, #{amount}, #{oven}, sysdate, #{image}, 0)
+	insert into Recipe values (#{no}, #{email}, #{country}, #{time}, #{material}, #{name}, #{difficulty}, #{amount}, #{oven}, sysdate, #{lastimage}, 0)
 </insert>
 
 </mapper>

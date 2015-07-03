@@ -30,10 +30,59 @@ public class RCPController {
 	@Autowired
 	RecipeService rs;
 	
+	/**
+	 * 레시피를 작성하기 위한
+	 * 페이지로 넘어가는 부분
+	 */
+	
 	@RequestMapping(value="rcpWrite", method = RequestMethod.GET)
 	public String rcpWrite() {		
 		return "rcpWrite";		
 	}
+	
+	/**
+	 * 수정을 하고 확인을 누르면
+	 * 실질적으로 DB에 접속하여 수정하는 부분
+	 * 수정액션
+	 */
+	
+	@RequestMapping(value="rcpUpdateAction", method = RequestMethod.POST)
+	public String rcpWriteAction(@ModelAttribute("recipe") Recipe recipe, HttpServletRequest req, HttpServletResponse rep, Model model) {		
+		recipe.setEmail("ttt@choongang.com");
+		// 아이디 : 이메일
+		
+		if(!recipe.getOven().equals("Y")) {
+			recipe.setOven("N");
+		}
+		// 오븐
+				
+		int day = Integer.parseInt(req.getParameter("time-d"));
+		int hour = Integer.parseInt(req.getParameter("time-h"));
+		int minute = Integer.parseInt(req.getParameter("time-m"));		
+		int time = day * 1440 + hour * 60 + minute;
+		recipe.setTime(time);		
+		// 시간
+		
+		int MLi = Integer.parseInt(req.getParameter("sendLi"));	
+		String material = rs.material(MLi, req);		
+		recipe.setMaterial(material);				
+		// 재료
+		
+		int Ili = Integer.parseInt(req.getParameter("imageLi"));
+		System.out.println(Ili);
+		String image = rs.image(Ili, req);
+		recipe.setLastimage(image);
+		// 이미지		
+		
+		rs.rcpUpdate(recipe);
+		return "result";		
+	}
+	
+	/**
+	 * 수정 하기 위에 접속하는 페이지
+	 * 기존에 있던 작성된 값들을 불러온다.
+	 * 수정
+	 */
 	
 	@RequestMapping(value="rcpUpdate", method = RequestMethod.GET)
 	public String rcpUpdate(Model model) {
@@ -69,6 +118,11 @@ public class RCPController {
 		return "rcpUpdate";		
 	}
 	
+	/**
+	 * 재료를 검색하기 위해 사용하는 부분
+	 * 자동 완성기능
+	 */
+	
 	@RequestMapping(value="material", method=RequestMethod.GET)
 	public String material(HttpServletRequest req, HttpServletResponse rep, Model model) throws Exception  {
 		String material = req.getParameter("term");		
@@ -92,6 +146,13 @@ public class RCPController {
 	}
 	// 재료 자동 완성 기능
 
+	/**
+	 * 레시피 작성 부분
+	 * 글을 적고 확인을 누르면
+	 * DB에 저장된다.
+	 * 작성
+	 */
+	
 	@RequestMapping(value="rcpWrite", method = RequestMethod.POST)
 	public String result(@ModelAttribute("recipe") Recipe recipe , BindingResult result, Model model, HttpServletRequest req, HttpServletResponse rep) {
 		recipe.setEmail("ttt@choongang.com");
@@ -111,25 +172,30 @@ public class RCPController {
 		
 		int MLi = Integer.parseInt(req.getParameter("sendLi"));	
 		String material = rs.material(MLi, req);		
-		recipe.setMaterial(material);		
-		System.out.println(material);
+		recipe.setMaterial(material);				
 		// 재료
 		
-		int Ili = Integer.parseInt(req.getParameter("imageLi"));
-		System.out.println(Ili);
+		int Ili = Integer.parseInt(req.getParameter("imageLi"));		
 		String image = rs.image(Ili, req);
-		recipe.setImage(image);
-		// 이미지
-				
-		System.out.println(image);
+		recipe.setLastimage(image);
+		// 이미지		
+		
 		rs.insert(recipe);
 		return "result";		
 	}	
+	
+	/**
+	 * 이미지 업로드를 누르면 작동하는 페이지
+	 */
 	
 	@RequestMapping(value="upload", method = RequestMethod.GET)
 	public String upload() {		
 		return "upload/upload";		
 	}		
+	
+	/**
+	 * 이미지 업로드 되는 실질적인 부분
+	 */
 
 	@RequestMapping(value = "upload2", method = RequestMethod.POST)
 	 public String upload2(Model model, MultipartHttpServletRequest multipartRequest) throws IOException{

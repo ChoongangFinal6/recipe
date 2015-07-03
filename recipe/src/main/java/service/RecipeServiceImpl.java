@@ -43,4 +43,11 @@ public class RecipeServiceImpl implements RecipeService{
 	public Recipe rcpSelect(int no) {		
 		return rd.select(no);
 	}
+
+	@Override
+	public void rcpUpdate(Recipe recipe) {
+		rd.update(recipe);
+		
+	}
+
 }

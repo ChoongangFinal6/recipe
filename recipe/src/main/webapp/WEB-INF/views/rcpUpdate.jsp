@@ -6,8 +6,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
+<script type="text/javascript">
+	function change(str) {
+		alert(str);
+	}
+</script>
 <body>
-<form action="rcpWrite.html" id="frm" name="frm" method="post">
+<form action="rcpUpdateAction.html" id="frm" name="frm" method="post">
 <div align="center" style="margin-top: 40px;">
 	<div style="width: 940px;">
 		<div style="width: 940px;" align="left">
@@ -78,48 +83,47 @@
 		<h3 style="margin-left: 10px;">재료</h3>
 		<div style="border: 2px solid black; margin-top: -10px;"></div><p>
 	</div>
-	<div style="border: 1px solid black; padding: 10px;">
-		<div class="ui-widget">
-		  <label for="material">재료 검색</label>
-		  <input id="material" size="50" name="material"> 
-		</div>
-		<p>
-		<div>
-			<ul id="ul-material">
-			<c:set var="i" value="0"></c:set>			
-				<c:forEach var="mlist" items="${mList}">
-				      <li>
-				      	<div>
-				      		<input type="text" id="Mmain" value="${mlist[0]}" style="width:100px; border: none;" readonly="readonly">  
-				      		/ 단위 : <select id="Munit${i}" >
-				      							<option value="fork" >fork</option>
-				      							<option value="spoon">spoon</option>
-				      							<option value="ctionScript">ActionScript</option>
-				      					  </select> 
-				      		/  양 : <input type="text" id="Mamount" value="${mlist[2]}">
-				      	</div>
-				      </li>				      
-				      <c:set var="i" value="${i+1}"></c:set>
-		    	</c:forEach>
-		</ul>
-	</div>		
-	</div>
-	
-	<script type="text/javascript">	
+				<div style="border: 1px solid black; padding: 10px;">
+					<div class="ui-widget">
+						<label for="material">재료 검색</label> <input id="material" size="50"
+							name="material">
+					</div>
+					<p>
+					<div>
+						<ul id="ul-material">
+							<c:set var="i" value="0"></c:set>
+							<c:forEach var="mlist" items="${mList}">
+								<li>
+									<div>
+										<input type="text" id="Mmain" value="${mlist[0]}"
+											style="width: 100px; border: none;" readonly="readonly">
+										/ 단위 :  <input type="text" id="Munit" value="${mlist[1]}"
+											style="width: 100px; border: none;" readonly="readonly">										
+										<%-- <select id="Munit${i}" onchange="change('${mlist[1]}')">
+											<option value="fork">fork</option>
+											<option value="spoon">spoon</option>
+											<option value="ctionScript">ActionScript</option>
+										</select> --%> 
+										
+										/ 양 : <input type="text" id="Mamount" value="${mlist[2]}" readonly="readonly" style="border: none;">
+									</div>
+								</li>
+								<c:set var="i" value="${i+1}"></c:set>
+							</c:forEach>
+						</ul>
+					</div>
+				</div>
+
+				<script type="text/javascript">	
 			$(function() {		
 					$("#country option[value="+'${recipe.country}'+"]").prop("selected", "selected");	
 					$("#amount option[value="+'${recipe.amount}'+"]").prop("selected", "selected");	
 					$("#difficulty option[value="+'${recipe.difficulty}'+"]").prop("selected", "selected");	
 					$("#time-d option[value="+'${day}'+"]").prop("selected", "selected");	
 					$("#time-h option[value="+'${hour}'+"]").prop("selected", "selected");	
-					$("#time-m option[value="+'${minute}'+"]").prop("selected", "selected");
-					
-				 	for (i=0; i<'${mli}'; i++) {					
-						$("#Munit0 option[value="+'${mList[][1]}'+"]").prop("selected", "selected");						
-					}	 
+					$("#time-m option[value="+'${minute}'+"]").prop("selected", "selected");			 	
 			});									
-		</script>
-		
+		</script>		
 	<div style="width: 940px;" align="left">
 		<h3 style="margin-left: 10px;">내용</h3>
 	</div>
@@ -151,6 +155,7 @@
 <div id="sendText"></div>
 <div id="sendLi"></div>
 <div id="imageLi"></div>
+<input type="hidden" name="no" value="${recipe.no}">
 </form>
 </body>
 </html>

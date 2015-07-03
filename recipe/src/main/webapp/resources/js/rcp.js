@@ -217,7 +217,7 @@ $(function() {
 			
 			$("#sendText").append(function() {		
 				var text = $("#wcontent > li").eq(i).find("div").parent().next().find("div").html();
-				var sendText = "<input type='hidden' name='sendText' value= '" + text+ "'>";			
+				var sendText = "<input type='hidden' name='sendText value= '" + text+ "'>";			
 				return sendText;
 			});			
 			// 텍스트 모아서 전송
