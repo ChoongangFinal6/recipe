@@ -206,7 +206,6 @@ public class RCPController {
 	/**
 	 * 이미지 업로드를 누르면 작동하는 페이지
 	 */
-	
 	@RequestMapping(value="upload", method = RequestMethod.GET)
 	public String upload() {		
 		return "upload/upload";		
