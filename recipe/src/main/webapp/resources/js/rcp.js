@@ -10,9 +10,9 @@
           this._createShowAllButton();
         },
    
-        _createAutocomplete: function() {
-          var selected = this.element.children( ":selected" ),
-            value = selected.val() ? selected.text() : "";
+        _createAutocomplete: function() {        	
+        	var selected = this.element.children( ":selected" ),   
+            value = selected.val() ? selected.text() : "";          
    
           this.input = $( "<input>" )
             .appendTo( this.wrapper )
@@ -147,7 +147,7 @@ $(function() {
         $( "<li><div>" ).html( "<input type='text' id='Mmain' value='"+message+"'style='width:100px; border: none;' readonly='readonly'>  / 단위 : <select class='selectbox' id='Munit'><option value='spoon'>spoon</option>"
     + "<option value='ActionScript'>ActionScript</option></select> /  양 : <input type='text' id='Mamount'>").prependTo( "#ul-material" );
         $( "#ul-material" ).scrollTop( 0 );
-        $( "#unit" ).combobox();
+        //$( "#unit" ).combobox();
     }
  
     $( "#material" )

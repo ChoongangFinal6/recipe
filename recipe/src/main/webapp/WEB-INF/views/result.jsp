@@ -9,9 +9,11 @@
 </head>
 <body>
 
-${recipe.name }
-${recipe.image }
-${recipe.sendText } 
+제목 : ${recipe.name } <p>
+마지막 이미지 : ${recipe.lastimage } <p>
+내용 : ${recipe.sendText[0] } <p>
+내용 : ${recipe.sendText[1] } <p>
+내용 : ${recipe.sendText[2] } <p>
 
 
 

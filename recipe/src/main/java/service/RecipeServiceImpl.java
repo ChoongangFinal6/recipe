@@ -23,9 +23,9 @@ public class RecipeServiceImpl implements RecipeService{
 	}
 
 	@Override
-	public void insert(Recipe recipe) {
+	public int insert(Recipe recipe) {
 		// TODO Auto-generated method stub
-		rd.insert(recipe);
+		return rd.insert(recipe);
 	}
 
 	@Override
@@ -38,4 +38,21 @@ public class RecipeServiceImpl implements RecipeService{
 	public String image(int ili, HttpServletRequest req) {
 		return rd.image(ili, req);
 	}
+
+	@Override
+	public Recipe rcpSelect(int no) {		
+		return rd.select(no);
+	}
+
+	@Override
+	public void rcpUpdate(Recipe recipe) {
+		rd.update(recipe);
+		
+	}
+
+	@Override
+	public String lastimage(int ili, HttpServletRequest req) {
+		return rd.lastimage(ili, req);
+	}
+
 }

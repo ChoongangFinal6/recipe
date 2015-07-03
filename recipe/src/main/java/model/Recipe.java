@@ -13,15 +13,15 @@ public class Recipe {
 	private int amount;
 	private String oven;
 	private Date writeDate;
-	private String image;	
+	private String lastimage;
 	private int rate;
 
-	private String sendText;	
+	private String[] sendText;	
 
-	public String getSendText() {
+	public String[] getSendText() {
 		return sendText;
 	}
-	public void setSendText(String sendText) {
+	public void setSendText(String[] sendText) {
 		this.sendText = sendText;
 	}
 	public int getNo() {
@@ -66,10 +66,10 @@ public class Recipe {
 	public void setDifficulty(int difficulty) {
 		this.difficulty = difficulty;
 	}
-	public int getSize() {
+	public int getAmount() {
 		return amount;
 	}
-	public void setSize(int size) {
+	public void setAmount(int size) {
 		this.amount = size;
 	}
 	public String getOven() {
@@ -84,16 +84,16 @@ public class Recipe {
 	public void setWriteDate(Date writeDate) {
 		this.writeDate = writeDate;
 	}
-	public String getImage() {
-		return image;
-	}
-	public void setImage(String image) {
-		this.image = image;
-	}
 	public int getRate() {
 		return rate;
 	}
 	public void setRate(int rate) {
 		this.rate = rate;
-	}	
+	}
+	public String getLastimage() {
+		return lastimage;
+	}
+	public void setLastimage(String lastimage) {
+		this.lastimage = lastimage;
+	}
 }

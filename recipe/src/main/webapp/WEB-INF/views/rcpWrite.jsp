@@ -16,49 +16,52 @@
 		
 		<div style="border: 2px solid black; margin-top: -15px; width: 940px;"></div>
 		
-		<div style="border: 1px solid black; margin-top: 15px; padding: 20px;">
+		<div style="border: 1px solid black; margin-top: 15px; padding: 20px; height: 60px;">
 			<span style="font-size: 17px; margin-right: 20px; float: left;">요리명</span>
-			<input type="text" id="title" style="width: 50%; height: 25px; float: left;" name="name" required="required">
-			<div style="float: right; width:300px;" align="right"><input type="checkbox" name="oven" value="Y"> 오븐</div>
+			<input type="text" id="title" style="width: 50%; height: 25px; float: left;" name="name" value="${recipe.name}">
 			
-			<div>
-				<select name="country" class="selectbox">			
+			<div style="float: right; width:350px; margin-bottom: 10px;" align="right">			
+					<input type="checkbox" name="oven" value="Y"> 오븐			
+			</div>
+			
+			<div style="float: left; margin-top: 10px;">			
+				<select name="country" id="country">							
 					<option value="korea">한식</option>
 					<option value="china">중식</option>
 					<option value="japan">일식</option>
 					<option value="europe">양식</option>
 				</select>
 				
-				<select name="amount" class="selectbox">			
+				<select name="amount" id="amount">			
 					<option value="1">1인</option>
 					<option value="2">2인</option>
 					<option value="3">3인</option>
 					<option value="4">4인</option>
 				</select>
 				
-				<select name="difficulty" class="selectbox">			
+				<select name="difficulty" id="difficulty">			
 					<option value="3">상</option>
 					<option value="2">중</option>
 					<option value="1">하</option>
 				</select>
 			</div>
 		
-			<div>걸리는 시간 
-			<select name="time-d" class="selectbox">
+			<div style="float: right; margin-top: 10px;">걸리는 시간 
+			<select name="time-d" id="time-d">
 				<option value="0">0</option>
 				<option value="1">1</option>
 				<option value="2">2</option>
 				<option value="3">3</option>
 			</select> 일 
 			
-			<select name="time-h" class="selectbox">
+			<select name="time-h" id="time-h">
 				<option value="0">0</option>
 				<option value="1">1</option>
 				<option value="2">2</option>
 				<option value="3">3</option>
 			</select> 시간 
 			
-			<select name="time-m" class="selectbox">
+			<select name="time-m" id="time-m">
 				<option value="0">0</option>
 				<option value="1">1</option>
 				<option value="2">2</option>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Content">
+<resultMap type="Content" id="Contentlist">
+	<result property="postNo" column="postNo"/>
+	<result property="no" column="no"/>
+	<result property="image" column="image"/>
+	<result property="content" column="content"/>
+</resultMap>
+
+<select id="select" parameterType="int" resultMap="Contentlist">
+	select * from Content where postNo = #{postNo}
+</select>
+
+<insert id="insert" parameterType="Content" >
+	<selectKey keyProperty="no" resultType="int" order="BEFORE">
+		select max(nvl(no, 0))+1 from Content
+	</selectKey>
+	insert into Content values (#{postNo}, #{no}, #{image}, #{content})
+</insert>
+
+</mapper>
