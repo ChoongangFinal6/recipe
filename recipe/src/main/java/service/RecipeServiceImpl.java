@@ -38,4 +38,10 @@ public class RecipeServiceImpl implements RecipeService{
 	public String image(int ili, HttpServletRequest req) {
 		return rd.image(ili, req);
 	}
+
+	@Override
+	public Recipe detail(String no) {
+		// TODO Auto-generated method stub
+		return rd.detail(no);
+	}
 }

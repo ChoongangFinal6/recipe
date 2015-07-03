@@ -23,5 +23,7 @@
 	</selectKey>
 	insert into Recipe values (#{no}, #{email}, #{country}, #{time}, #{material}, #{name}, #{difficulty}, #{amount}, #{oven}, sysdate, #{image}, 0)
 </insert>
-
+<select id="detail" parameterType="String" resultType="Recipe">
+select * from where no = #{no}
+</select>
 </mapper>
