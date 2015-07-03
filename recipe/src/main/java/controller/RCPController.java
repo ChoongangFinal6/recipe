@@ -9,6 +9,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.Content;
 import model.Material;
 import model.Recipe;
 
@@ -19,6 +20,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -29,6 +31,8 @@ import fileupload.FileUpload;
 public class RCPController {
 	@Autowired
 	RecipeService rs;
+//	@Autowired
+//	ContentService cs;
 	
 	/**
 	 * 레시피를 작성하기 위한
@@ -193,11 +197,18 @@ public class RCPController {
 		
 		return "result";		
 	}	
+	@RequestMapping(value="detail", method = RequestMethod.POST)
+	public String detail(@RequestParam("no") String no, Model model) {		
+		Recipe recipe = rs.detail(no);
+//		Content content = cs.detail(no);
+		model.addAttribute("recipe", recipe);
+//		model.addAttribute("content", content);
+		return "detail";		
+	}	
 	
 	/**
 	 * 이미지 업로드를 누르면 작동하는 페이지
 	 */
-	
 	@RequestMapping(value="upload", method = RequestMethod.GET)
 	public String upload() {		
 		return "upload/upload";		
