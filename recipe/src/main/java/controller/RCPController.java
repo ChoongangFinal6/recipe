@@ -110,4 +110,16 @@ public class RCPController {
 	  model.addAttribute("name", replaceName);
 	  return "upload/upload2";
 	 }	
+	@RequestMapping(value="comment")
+	public String comment() {		
+		return "comment";		
+	}	
+	@RequestMapping(value="rate", method = RequestMethod.GET)
+	public String rate() {		
+		return "rate";		
+	}	
+	@RequestMapping(value="rate", method = RequestMethod.POST)
+	public String ratePro() {		
+		return "rate";		
+	}	
 }
