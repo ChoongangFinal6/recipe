@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import service.ContentService;
 import service.RecipeService;
 import fileupload.FileUpload;
 
@@ -31,8 +32,8 @@ import fileupload.FileUpload;
 public class RCPController {
 	@Autowired
 	RecipeService rs;
-//	@Autowired
-//	ContentService cs;
+	@Autowired
+	ContentService cs;
 	
 	/**
 	 * 레시피를 작성하기 위한
@@ -200,9 +201,9 @@ public class RCPController {
 	@RequestMapping(value="detail", method = RequestMethod.POST)
 	public String detail(@RequestParam("no") String no, Model model) {		
 		Recipe recipe = rs.detail(no);
-//		Content content = cs.detail(no);
+		List<Content> content = cs.detail(no);
 		model.addAttribute("recipe", recipe);
-//		model.addAttribute("content", content);
+		model.addAttribute("content", content);
 		return "detail";		
 	}	
 	
