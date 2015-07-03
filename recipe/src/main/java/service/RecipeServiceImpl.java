@@ -23,9 +23,9 @@ public class RecipeServiceImpl implements RecipeService{
 	}
 
 	@Override
-	public void insert(Recipe recipe) {
+	public int insert(Recipe recipe) {
 		// TODO Auto-generated method stub
-		rd.insert(recipe);
+		return rd.insert(recipe);
 	}
 
 	@Override

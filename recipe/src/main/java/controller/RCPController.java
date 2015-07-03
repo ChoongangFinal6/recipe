@@ -177,16 +177,19 @@ public class RCPController {
 		
 		int ili = Integer.parseInt(req.getParameter("imageLi"));	
 		// 내용이 몇칸인지 받아옴
+		
 		String lastimage = rs.lastimage(ili, req);
 		recipe.setLastimage(lastimage);
 		// 이미지		
 		
-		rs.insert(recipe);		
+		int no = rs.insert(recipe);		
 		
-		////////////////////////Content//////////////////////////
+		System.out.println(recipe.getSendText().length);
+		
+		//////////////////////// Content //////////////////////////
 		
 		String image = rs.image(ili, req);
-		
+		String[] imagelist = image.split(",");
 		
 		return "result";		
 	}	

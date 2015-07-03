@@ -13,8 +13,6 @@
 	<result property="amount" column="amount"/>
 	<result property="oven" column="oven"/>
 	<result property="writeDate" column="writeDate"/>
-	<result property="content" column="content"/>
-	<result property="image" column="image"/>
 	<result property="lastimage" column="lastimage"/>
 	<result property="rate" column="rate"/>
 </resultMap>

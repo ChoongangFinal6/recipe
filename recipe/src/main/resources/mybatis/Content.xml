@@ -9,7 +9,7 @@
 	<result property="content" column="content"/>
 </resultMap>
 
-<select id="select" parameterType="int" resultMap="Content">
+<select id="select" parameterType="int" resultMap="Contentlist">
 	select * from Content where postNo = #{postNo}
 </select>
 

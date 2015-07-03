@@ -16,12 +16,12 @@ public class Recipe {
 	private String lastimage;
 	private int rate;
 
-	private String sendText;	
+	private String[] sendText;	
 
-	public String getSendText() {
+	public String[] getSendText() {
 		return sendText;
 	}
-	public void setSendText(String sendText) {
+	public void setSendText(String[] sendText) {
 		this.sendText = sendText;
 	}
 	public int getNo() {

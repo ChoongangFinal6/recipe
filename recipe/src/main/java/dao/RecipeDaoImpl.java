@@ -23,9 +23,10 @@ public class RecipeDaoImpl implements RecipeDao{
 	}
 
 	@Override
-	public void insert(Recipe recipe) {
+	public int insert(Recipe recipe) {
 		// TODO Auto-generated method stub
-		session.insert("insert", recipe);
+		session.insert("Recipe.insert", recipe);
+		return recipe.getNo();
 	}
 
 	@Override
@@ -68,13 +69,13 @@ public class RecipeDaoImpl implements RecipeDao{
 
 	@Override
 	public Recipe select(int no) {		
-		Recipe recipe = (Recipe) session.selectOne("select", no);		
+		Recipe recipe = (Recipe) session.selectOne("Recipe.select", no);		
 		return recipe;
 	}
 
 	@Override
 	public void update(Recipe recipe) {
-		session.update("update", recipe);
+		session.update("Recipe.update", recipe);
 		
 	}
 
