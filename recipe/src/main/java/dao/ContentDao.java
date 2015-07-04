@@ -6,6 +6,6 @@ import model.Content;
 
 public interface ContentDao {
 
-	List<Content> detail(String no);
+	List<Content> detail(int no);
 
 }

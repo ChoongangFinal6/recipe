@@ -6,6 +6,6 @@ import model.Content;
 
 public interface ContentService {
 
-	List<Content> detail(String no);
+	List<Content> detail(int no);
 
 }

@@ -90,8 +90,7 @@ public class RCPController {
 	 */
 	
 	@RequestMapping(value="rcpUpdate", method = RequestMethod.GET)
-	public String rcpUpdate(Model model) {
-		int no = 4;	
+	public String rcpUpdate(@RequestParam("no") int no, Model model) {
 		Recipe recipe = rs.rcpSelect(no);
 		model.addAttribute(recipe);
 		
@@ -198,10 +197,27 @@ public class RCPController {
 		
 		return "result";		
 	}	
-	@RequestMapping(value="detail", method = RequestMethod.POST)
-	public String detail(@RequestParam("no") String no, Model model) {		
-		Recipe recipe = rs.detail(no);
+	
+	/**
+	 * 본문 보기
+	 * @param no : 레시피일련번호
+	 * @return
+	 */
+	@RequestMapping(value="detail")
+	public String detail(@RequestParam("no") int no, Model model) {		
+		Recipe recipe = rs.rcpSelect(no);
 		List<Content> content = cs.detail(no);
+		
+		String material = recipe.getMaterial();
+		String[] materialList = material.split(",");
+		List<String[]> mList = new ArrayList<String[]>();
+		for(int i=0; i<materialList.length/3; i++) {
+			String[] str= {materialList[i*3], materialList[i*3+1], materialList[i*3+2]};
+			mList.add(str);			
+		}
+		model.addAttribute("mList", mList);
+		//재료 전송
+		
 		model.addAttribute("recipe", recipe);
 		model.addAttribute("content", content);
 		return "detail";		

@@ -40,7 +40,7 @@
 	</selectKey>
 	insert into Recipe values (#{no}, #{email}, #{country}, #{time}, #{material}, #{name}, #{difficulty}, #{amount}, #{oven}, sysdate, #{lastimage}, 0)
 </insert>
-<select id="detail" parameterType="String" resultType="Recipe">
-select * from where no = #{no}
+<select id="detail" parameterType="int" resultType="Recipe">
+select * from recipe where no = #{no}
 </select>
 </mapper>

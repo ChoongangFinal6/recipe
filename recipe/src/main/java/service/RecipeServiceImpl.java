@@ -40,10 +40,6 @@ public class RecipeServiceImpl implements RecipeService{
 	}
 
 	@Override
-	public Recipe detail(String no) {
-		// TODO Auto-generated method stub
-		return rd.detail(no);
-	}
 	public Recipe rcpSelect(int no) {		
 		return rd.select(no);
 	}
