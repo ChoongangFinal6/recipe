@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 import model.Recipe;
 
 public interface RecipeDao {
-
 	List msearch(String material);
 	int insert(Recipe recipe);
 	String material(int mLi, HttpServletRequest req);
