@@ -37,10 +37,13 @@ public class RecipeServiceImpl implements RecipeService{
 	}
 
 	@Override
+<<<<<<< HEAD
 	public Recipe detail(String no) {	
 		return rd.detail(no);
 	}
 	
+=======
+>>>>>>> 3fc111f8db1bc2d03b5550341c446b7564b9fd53
 	public Recipe rcpSelect(int no) {		
 		return rd.select(no);
 	}

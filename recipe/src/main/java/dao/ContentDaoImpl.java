@@ -15,7 +15,11 @@ public class ContentDaoImpl implements ContentDao {
 	private SqlSession session;
 	
 	@Override
+<<<<<<< HEAD
 	public List<Content> detail(String no) {		
+=======
+	public List<Content> detail(int no) {
+>>>>>>> 3fc111f8db1bc2d03b5550341c446b7564b9fd53
 		List<Content> content = new ArrayList<Content>(); 
 		content = session.selectList("Content.select", no); 
 		return content;
