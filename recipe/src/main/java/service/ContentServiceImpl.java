@@ -13,17 +13,16 @@ import dao.ContentDao;
 public class ContentServiceImpl implements ContentService {
 	@Autowired
 	ContentDao cd;
-<<<<<<< HEAD
-	
-	@Override
-	public List<Content> detail(String no) {
-=======
+
 	public List<Content> detail(int no) {
->>>>>>> 3fc111f8db1bc2d03b5550341c446b7564b9fd53
 		return cd.detail(no);
 	}
 	@Override
-	public void insert(Content content) {
-		cd.insert(content);
+	public void insert1(Content content) {
+		cd.insert1(content);
+	}
+	
+	public void insert2(Content content) {
+		cd.insert2(content);
 	}
 }

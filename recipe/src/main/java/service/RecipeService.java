@@ -13,5 +13,6 @@ public interface RecipeService {
 	String image(int ili, HttpServletRequest req);
 	String lastimage(int ili, HttpServletRequest req);	
 	Recipe rcpSelect(int no);
+	Recipe detail(int no);
 	void rcpUpdate(Recipe recipe);
 }
