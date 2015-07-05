@@ -9,10 +9,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.Content;
-import model.Material;
-import model.Recipe;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,9 +20,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import service.ContentService;
-import service.RecipeService;
 import fileupload.FileUpload;
+import model.Content;
+import model.Material;
+import model.Rating;
+import model.Recipe;
+import model.Reply;
+import service.ContentService;
+import service.RatingService;
+import service.RecipeService;
+import service.ReplyService;
 
 @Controller
 public class RCPController {
@@ -34,6 +37,12 @@ public class RCPController {
 	RecipeService rs;
 	@Autowired
 	ContentService cs;
+	@Autowired
+	RatingService rts;
+	@Autowired
+	ReplyService rpls;
+	
+	
 	
 	/**
 	 * 레시피를 작성하기 위한
@@ -207,6 +216,7 @@ public class RCPController {
 	public String detail(@RequestParam("no") int no, Model model) {		
 		Recipe recipe = rs.rcpSelect(no);
 		List<Content> content = cs.detail(no);
+		int count = rts.cntAvg(no).getCount();
 		
 		String material = recipe.getMaterial();
 		String[] materialList = material.split(",");
@@ -218,6 +228,7 @@ public class RCPController {
 		model.addAttribute("mList", mList);
 		//재료 전송
 		
+		model.addAttribute("count", count);
 		model.addAttribute("recipe", recipe);
 		model.addAttribute("content", content);
 		return "detail";		
@@ -249,16 +260,79 @@ public class RCPController {
 	  model.addAttribute("name", replaceName);
 	  return "upload/upload2";
 	 }	
-	@RequestMapping(value="comment")
-	public String comment() {		
-		return "comment";		
+	/**
+	 * @param postNo content 테이블의 no를 받아서 조회
+	 * @return
+	 */
+	@RequestMapping(value="reply",method=RequestMethod.GET)
+	public String comment(@RequestParam("postNo") int postNo, Model model) {
+		List<Reply> list = rpls.list(postNo);
+		model.addAttribute("email", "ttt@choongang.com");
+		model.addAttribute("list", list);
+		model.addAttribute("postNo", postNo);
+		return "reply";	
 	}	
+	/**
+	 * 댓글쓰기 기능
+	 * @param reply	no의 null여부에 따라 답글인지 구분
+	 * @return 레시피 보기 페이지로 이동(해서 새로고침)
+	 */
+	@RequestMapping(value="reply",method=RequestMethod.POST)
+	public String commentWrite(@ModelAttribute("reply") Reply reply, BindingResult result, Model model) {		
+		reply.setEmail("ttt@choongang.com");
+		if (reply.getNo() > 0) {
+			Reply ref = rpls.select(reply.getNo());
+			reply.setRef(ref.getRef());
+			reply.setPostNo(ref.getPostNo());
+			reply.setRefId(ref.getEmail());
+		} else {
+		}
+		System.out.println(reply.getRef());
+		int result1 = rpls.insert(reply);
+		return "redirect:detail.html?no="+reply.getPostNo();	
+	}	
+	/**
+	 * 세션 등의 email 받아서 객체에 저장, no와 같이 del수행
+	 * @param no
+	 * @param model
+	 * @return
+	 * @throws IOException 
+	 */
+	@RequestMapping(value="delReply")
+	public String commentDelete(@RequestParam("no") int no, Model model, HttpServletRequest req, HttpServletResponse rep) throws IOException {		
+		Reply reply = new Reply();
+		reply.setNo(no);
+		reply.setEmail("ttt@choongang.com");
+		int result = rpls.delete(reply);
+		String msg = "" + result;
+		rep.setContentType("text/html; charset=utf-8");
+		PrintWriter out = rep.getWriter();		
+		out.print(msg);
+		return null;	
+	}	
+	/**
+	 * 평점주기
+	 * @param postNo
+	 * @param rate
+	 * @param rep 이용해서 결과값주기 ->ajax에서 활용
+	 * @return 널
+	 */
 	@RequestMapping(value="rate", method = RequestMethod.GET)
-	public String rate() {		
-		return "rate";		
-	}	
-	@RequestMapping(value="rate", method = RequestMethod.POST)
-	public String ratePro() {		
-		return "rate";		
+	public String ratePro(@RequestParam("postNo") int postNo, @RequestParam("rate") int rate, Model model, HttpServletRequest req, HttpServletResponse rep) throws IOException {		
+		Rating rating = new Rating();
+		rating.setPostNo(postNo);
+		rating.setRate(rate);
+		rating.setEmail("ttt@choongang.com");
+		int result = rts.insert(rating);
+		Rating cntAvg = rts.cntAvg(postNo);
+		
+		String msg = "{\"result\":\""+result+"\""
+				+ ",\"count\":\""+cntAvg.getCount()+"\""
+				+ ",\"average\":\""+cntAvg.getAverage()+"\""
+				+ "}";
+		rep.setContentType("text/html; charset=utf-8");
+		PrintWriter out = rep.getWriter();		
+		out.print(msg);
+		return null;		
 	}	
 }

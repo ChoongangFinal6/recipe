@@ -24,7 +24,6 @@ public class RecipeDaoImpl implements RecipeDao{
 
 	@Override
 	public int insert(Recipe recipe) {
-		// TODO Auto-generated method stub
 		session.insert("Recipe.insert", recipe);
 		return recipe.getNo();
 	}
