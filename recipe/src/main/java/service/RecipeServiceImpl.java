@@ -17,21 +17,18 @@ public class RecipeServiceImpl implements RecipeService{
 	RecipeDao rd;
 	
 	@Override
-	public List msearch(String material) {
-		
+	public List msearch(String material) {		
 		return rd.msearch(material);
 	}
 
 	@Override
-	public int insert(Recipe recipe) {
-		// TODO Auto-generated method stub
+	public int insert(Recipe recipe) {	
 		return rd.insert(recipe);
 	}
 
 	@Override
 	public String material(int mLi, HttpServletRequest req) {
-		return rd.material(mLi, req);
-		
+		return rd.material(mLi, req);		
 	}
 
 	@Override
@@ -40,19 +37,24 @@ public class RecipeServiceImpl implements RecipeService{
 	}
 
 	@Override
+<<<<<<< HEAD
+	public Recipe detail(String no) {	
+		return rd.detail(no);
+	}
+	
+=======
+>>>>>>> 3fc111f8db1bc2d03b5550341c446b7564b9fd53
 	public Recipe rcpSelect(int no) {		
 		return rd.select(no);
 	}
 
 	@Override
 	public void rcpUpdate(Recipe recipe) {
-		rd.update(recipe);
-		
+		rd.update(recipe);		
 	}
 
 	@Override
 	public String lastimage(int ili, HttpServletRequest req) {
 		return rd.lastimage(ili, req);
 	}
-
 }

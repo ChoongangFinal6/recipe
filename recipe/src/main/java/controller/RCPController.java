@@ -167,7 +167,8 @@ public class RCPController {
 	 */
 	
 	@RequestMapping(value="rcpWrite", method = RequestMethod.POST)
-	public String result(@ModelAttribute("recipe") Recipe recipe , BindingResult result, Model model, HttpServletRequest req, HttpServletResponse rep) {
+	public String result(@ModelAttribute("content") Content content, @ModelAttribute("recipe") Recipe recipe, 
+			BindingResult result, Model model, HttpServletRequest req, HttpServletResponse rep) {
 		recipe.setEmail("ttt@choongang.com");
 		// 아이디 : 이메일
 		
@@ -195,15 +196,20 @@ public class RCPController {
 		recipe.setLastimage(lastimage);
 		// 이미지		
 		
-		int no = rs.insert(recipe);		
-		
-		System.out.println(recipe.getSendText().length);
+		int no = rs.insert(recipe);
+		// 현재 작성된 글의 번호를 받아온다.		
 		
 		//////////////////////// Content //////////////////////////
 		
 		String image = rs.image(ili, req);
 		String[] imagelist = image.split(",");
 		
+		for(int i=0; i<ili; i++) {
+			content.setPostNo(no);
+			content.setImage(imagelist[i]);
+			content.setContent(recipe.getSendText()[i]);
+			cs.insert(content);
+		}		
 		return "result";		
 	}	
 	

@@ -11,8 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class RecipeDaoImpl implements RecipeDao{
-	
+public class RecipeDaoImpl implements RecipeDao{	
 	@Autowired
 	private SqlSession session;
 
@@ -63,6 +62,14 @@ public class RecipeDaoImpl implements RecipeDao{
 		}		
 		return image;
 	}
+<<<<<<< HEAD
+
+	@Override
+	public Recipe detail(String no) {
+		return session.selectOne("Recipe.detail", no);
+	}
+=======
+>>>>>>> 3fc111f8db1bc2d03b5550341c446b7564b9fd53
 	public Recipe select(int no) {		
 		Recipe recipe = (Recipe) session.selectOne("Recipe.select", no);		
 		return recipe;
@@ -70,8 +77,7 @@ public class RecipeDaoImpl implements RecipeDao{
 
 	@Override
 	public void update(Recipe recipe) {
-		session.update("Recipe.update", recipe);
-		
+		session.update("Recipe.update", recipe);		
 	}
 
 	@Override
