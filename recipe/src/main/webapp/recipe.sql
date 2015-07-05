@@ -21,6 +21,8 @@ insert into MATERIAL values (10, 'kimchi', 'vegetable');
 insert into MATERIAL values (11, '두부', 'grain');
 insert into MATERIAL values (12, '간장', 'source');
 insert into MATERIAL values (13, '김치', 'vegetable');
+insert into MATERIAL values (14, '된장', 'source');
+insert into MATERIAL values (14, '물', 'water');
 
 
 
