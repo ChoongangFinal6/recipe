@@ -12,6 +12,7 @@ public interface RecipeDao {
 	int insert(Recipe recipe);
 	String material(int mLi, HttpServletRequest req);
 	String image(int ili, HttpServletRequest req);
+	Recipe detail(String no);
 	String lastimage(int ili, HttpServletRequest req);
 	Recipe select(int no);
 	void update(Recipe recipe);
