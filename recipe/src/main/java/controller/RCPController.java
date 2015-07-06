@@ -43,9 +43,6 @@ public class RCPController {
 	@Autowired
 	ReplyService rpls;
 	
-	
-
-	
 	/**
 	 * 레시피를 작성하기 위한
 	 * 페이지로 넘어가는 부분
@@ -63,11 +60,11 @@ public class RCPController {
 	 */
 	
 	@RequestMapping(value="rcpUpdateAction", method = RequestMethod.POST)
-	public String rcpWriteAction(@ModelAttribute("recipe") Recipe recipe, HttpServletRequest req, HttpServletResponse rep, Model model) {		
+	public String rcpWriteAction(@ModelAttribute("content") Content content, @ModelAttribute("recipe") Recipe recipe, HttpServletRequest req, HttpServletResponse rep, Model model) {		
 		recipe.setEmail("ttt@choongang.com");
 		// 아이디 : 이메일
 		
-		if(!recipe.getOven().equals("Y")) {
+		if(recipe.getOven() == null) {
 			recipe.setOven("N");
 		}
 		// 오븐
@@ -84,13 +81,33 @@ public class RCPController {
 		recipe.setMaterial(material);				
 		// 재료
 		
-		int Ili = Integer.parseInt(req.getParameter("imageLi"));
-		System.out.println(Ili);
+		int Ili = Integer.parseInt(req.getParameter("imageLi"));	
 		String image = rs.image(Ili, req);
 		recipe.setLastimage(image);
 		// 이미지		
 		
-		rs.rcpUpdate(recipe);
+		rs.rcpUpdate(recipe);				
+		
+		//////////////////// content /////////////////////		
+		
+		String[] imagelist = image.split(",");
+	
+		cs.delete(recipe.getNo());	
+		
+		for(int i=0; i<Ili; i++) {			
+			content.setPostNo(recipe.getNo());
+			content.setImage(imagelist[i]);
+			content.setContent(recipe.getSendText()[i]);
+			System.out.println(recipe.getSendText()[i]);
+			
+			if(i>=1) {
+				cs.insert2(content);
+			} else {			
+				cs.insert1(content);
+			}
+		}		
+
+		
 		return "result";		
 	}
 	
@@ -129,6 +146,13 @@ public class RCPController {
 		int mli = materialList.length/3;
 		model.addAttribute("mli", mli);
 		// 재료 li 갯수 전송
+		
+		
+		////////////////// Content ////////////////
+		
+		List<Content> content = cs.detail(no);
+		
+		model.addAttribute("content", content);
 		
 		return "rcpUpdate";		
 	}
@@ -174,7 +198,7 @@ public class RCPController {
 		recipe.setEmail("ttt@choongang.com");
 		// 아이디 : 이메일
 		
-		if(recipe.getOven()!="Y") {
+		if(!recipe.equals("Y")) {
 			recipe.setOven("N");
 		}
 		// 오븐
@@ -199,23 +223,21 @@ public class RCPController {
 		// 이미지		
 		
 		int no = rs.insert(recipe);
-		// 현재 작성된 글의 번호를 받아온다.		
-		System.out.println(ili);
+		// 현재 작성된 글의 번호를 받아온다.				
+		
 		//////////////////////// Content //////////////////////////
 		
 		String image = rs.image(ili, req);
 		String[] imagelist = image.split(",");
 		
 		for(int i=0; i<ili; i++) {			
+			content.setPostNo(no);
+			content.setImage(imagelist[i]);
+			content.setContent(recipe.getSendText()[i]);
+			
 			if(i>=1) {
-				content.setPostNo(no);
-				content.setImage(imagelist[i]);
-				content.setContent(recipe.getSendText()[i]);
 				cs.insert2(content);
-			} else {
-				content.setPostNo(no);
-				content.setImage(imagelist[i]);
-				content.setContent(recipe.getSendText()[i]);
+			} else {			
 				cs.insert1(content);
 			}
 		}		

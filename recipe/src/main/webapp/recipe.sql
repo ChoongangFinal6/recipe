@@ -68,6 +68,7 @@ CREATE TABLE content (
 );
 
 select * from content;
+
 select * from reply;
 
 insert into content values (1, 1, '사진', '내용');
