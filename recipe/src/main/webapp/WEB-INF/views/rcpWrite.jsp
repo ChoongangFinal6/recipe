@@ -99,7 +99,8 @@
 										<span class="action-italic">I</span>
 										<span class="action-underline">U</span>
 										<span class="action-unformat">✘</span>
-										<div class="content-table-div-right" id="content"></div>
+										<div class="content-table-div-right content" id="content"></div>
+										<div class="content-table-div-right content" id="content"></div>
 									</td>
 								</tr>
 								<tr>
