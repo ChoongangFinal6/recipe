@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import model.Rating;
 import model.Recipe;
 
 import org.apache.ibatis.session.SqlSession;
@@ -83,5 +84,12 @@ public class RecipeDaoImpl implements RecipeDao{
 		}
 		
 		return lastimage;
+	}
+
+	/* delete수행대신 update로 no 음수화
+	 */
+	@Override
+	public int delete(Rating rating) {
+		return session.update("Recipe.del", rating);
 	}
 }
