@@ -7,3 +7,8 @@
 .content-table-div-right {border: 1px solid black; height: 140; width: 500px; padding: 10px; overflow: auto;}
 
 #ul-material li {list-style: none;}
+.list {margin-left: 10px; color: #FFFFFF; margin-right: 5px;}
+.listtd {margin-left: 10px; color: #FFFFFF; background-color: red}
+.button {color: #FFFFFF; background-color: red; width: 70px; height: 30px; font-size: 15px;}
+.list-li {font-size: 22px; display: inline;}
+.active a:visited {color: #ff0000; text-decoration:none; font-weight: bolder;}

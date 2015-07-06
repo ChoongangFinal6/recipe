@@ -54,4 +54,14 @@ public class RecipeServiceImpl implements RecipeService{
 	public String lastimage(int ili, HttpServletRequest req) {
 		return rd.lastimage(ili, req);
 	}
+
+	@Override
+	public int selectCount() {		
+		return rd.selectCount();
+	}
+
+	@Override
+	public List<Recipe> selectRow(Recipe recipe) {	
+		return rd.selectRow(recipe);
+	}
 }

@@ -15,4 +15,6 @@ public interface RecipeDao {
 	Recipe select(int no);
 	Recipe detail(int no);
 	void update(Recipe recipe);
+	int selectCount();
+	List<Recipe> selectRow(Recipe recipe);
 }

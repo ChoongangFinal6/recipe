@@ -21,6 +21,14 @@
 	select * from Recipe where no = #{no}
 </select>
 
+<select id="selectCount" resultType="int">
+	select count(*) from Recipe
+</select>
+
+<select id="selectRow" parameterType="int" resultMap="Recipelist">
+select * from (select rownum rn, a.* from (select * from Recipe order by no desc) a) where rn between #{startRow} and #{endRow}
+</select>
+
 <update id="update" parameterType="Recipe" >
 	update Recipe set
 	country = #{country},

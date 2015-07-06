@@ -17,6 +17,9 @@ public class Recipe {
 	private float rate;
 
 	private String[] sendText;	
+	
+	private int startRow;
+	private int endRow;
 
 	public String[] getSendText() {
 		return sendText;
@@ -95,5 +98,17 @@ public class Recipe {
 	}
 	public void setLastimage(String lastimage) {
 		this.lastimage = lastimage;
+	}
+	public int getStartRow() {
+		return startRow;
+	}
+	public void setStartRow(int startRow) {
+		this.startRow = startRow;
+	}
+	public int getEndRow() {
+		return endRow;
+	}
+	public void setEndRow(int endRow) {
+		this.endRow = endRow;
 	}
 }

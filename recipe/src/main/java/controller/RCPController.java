@@ -53,6 +53,40 @@ public class RCPController {
 		return "rcpWrite";		
 	}
 	
+	@RequestMapping(value="rcpList", method = RequestMethod.GET)
+	public String rcpList(@RequestParam(value="pageNo", defaultValue="1") String pageNo, @ModelAttribute("recipe") Recipe recipe, Model model) {
+		int currentPage = Integer.parseInt(pageNo);
+		
+		int pageSize = 10; // 게시글 수
+		int blockSize = 10; // 블럭 수
+		int startPage = (currentPage - 1) / blockSize * blockSize + 1; // 블럭 시작 
+		int endPage = startPage + blockSize - 1; // 블럭 끝
+		
+		int startRow = ((currentPage - 1) * pageSize) + 1; // 게시글 시작 row 
+		int endRow = startRow + pageSize - 1; // 게시글 끝 row
+		
+		int totCnt = rs.selectCount(); // 총 게시글 수
+		
+		int startNum = totCnt - startRow + 1; // 게시글 시작 num
+		int pageCnt = (int) Math.ceil((double) totCnt / pageSize); // 총 페이지 수 
+
+		if (endPage > pageCnt) {
+			endPage = pageCnt;
+		}
+		
+		recipe.setStartRow(startRow);
+		recipe.setEndRow(endRow);
+		
+		List<Recipe> recipeList = rs.selectRow(recipe);
+		
+		model.addAttribute("recipeList", recipeList);
+		model.addAttribute("pageNo", pageNo);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+		
+		return "rcpList";		
+	}
+	
 	/**
 	 * 수정을 하고 확인을 누르면
 	 * 실질적으로 DB에 접속하여 수정하는 부분

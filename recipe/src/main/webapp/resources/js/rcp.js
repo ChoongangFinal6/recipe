@@ -1,3 +1,9 @@
+$(function() {
+	$("#write").click(function() {
+		location.href="rcpWrite.html";
+	});
+});
+
 (function( $ ) {
     $.widget( "custom.combobox", {
         _create: function() {

@@ -90,4 +90,14 @@ public class RecipeDaoImpl implements RecipeDao{
 		
 		return lastimage;
 	}
+
+	@Override
+	public int selectCount() {		
+		return session.selectOne("Recipe.selectCount");
+	}
+
+	@Override
+	public List<Recipe> selectRow(Recipe recipe) {	
+		return session.selectList("Recipe.selectRow", recipe);
+	}
 }

@@ -15,4 +15,6 @@ public interface RecipeService {
 	Recipe rcpSelect(int no);
 	Recipe detail(int no);
 	void rcpUpdate(Recipe recipe);
+	int selectCount();
+	List<Recipe> selectRow(Recipe recipe);
 }
