@@ -91,6 +91,8 @@ public class RecipeDaoImpl implements RecipeDao{
 		
 		return lastimage;
 	}
+
+<<<<<<< HEAD
 	@Override
 	public int selectCount() {		
 		return session.selectOne("Recipe.selectCount");
@@ -99,11 +101,12 @@ public class RecipeDaoImpl implements RecipeDao{
 	@Override
 	public List<Recipe> selectRow(Recipe recipe) {	
 		return session.selectList("Recipe.selectRow", recipe);
-	}
+=======
 	/* delete수행대신 update로 no 음수화
 	 */
 	@Override
 	public int delete(Rating rating) {
 		return session.update("Recipe.del", rating);
+>>>>>>> c36d5b3dbddf5ce88fe65bed9248ab56b316501f
 	}
 }

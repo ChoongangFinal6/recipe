@@ -21,7 +21,7 @@
 		select * from Recipe where no = #{no}
 	</select>
 
-
+<<<<<<< HEAD
 <select id="selectCount" resultType="int">
 	select count(*) from Recipe
 </select>
@@ -42,7 +42,7 @@ select * from (select rownum rn, a.* from (select * from Recipe order by no desc
 	lastimage = #{lastimage}
 	where no = #{no}		
 </update>
-
+=======
 	<update id="update" parameterType="Recipe">
 		update Recipe set
 		country = #{country},
@@ -57,7 +57,7 @@ select * from (select rownum rn, a.* from (select * from Recipe order by no desc
 		#{lastimage}
 		where no = #{no}
 	</update>
-
+>>>>>>> c36d5b3dbddf5ce88fe65bed9248ab56b316501f
 
 	<insert id="insert" parameterType="Recipe" keyProperty="no">
 		<selectKey keyProperty="no" resultType="int" order="BEFORE">

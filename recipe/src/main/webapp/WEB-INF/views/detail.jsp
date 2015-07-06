@@ -76,11 +76,14 @@
 				</ul>
 			</div>
 		</div>
-
+<<<<<<< HEAD
+		<input type="button" value="목록으로" onclick="location.href='rcpList.html?no=${pageNo}'" style="margin-top: 30px;"> <input
+			type="button" value="수정하기" onclick="location.href='rcpUpdate.html?no=${recipe.no}'" style="margin-top: 30px;">
+=======
 		<input type="button" value="목록으로" onclick="location.href='rcpList.html?pageNo=${pageNo}'" style="margin-top: 30px;"> 
 		<input type="button" value="수정하기" onclick="location.href='rcpUpdate.html?no=${recipe.no}'" style="margin-top: 30px;">
 		<input type="button" value="삭제하기" onclick="del(${recipe.no},${pageNo})" style="margin-top: 30px;">
-
+>>>>>>> c36d5b3dbddf5ce88fe65bed9248ab56b316501f
 		<div class="rate">
 			<input type="hidden" value="${recipe.no }" id="recipeNo" name="postNo"> 
 			<span class="score" id="score">평점 :${recipe.rate}</span> 
