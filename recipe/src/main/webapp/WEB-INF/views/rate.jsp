@@ -18,7 +18,7 @@ ${10-j}
 </span>
 <span>
 <input type="submit" value="평가">
-<input type="hidden" name="postNo" value="${postNo}"> 
+<input type="hidden" name="postNo" value="${no}"> 
 </span>
 </form>
 </div>

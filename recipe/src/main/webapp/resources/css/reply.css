@@ -1,0 +1,7 @@
+@CHARSET "UTF-8";
+#commentUl {
+	list-style-type: none;
+}
+#commentBtn,#delSpan {
+	cursor: pointer;
+}

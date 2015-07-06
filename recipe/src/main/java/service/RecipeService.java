@@ -11,7 +11,6 @@ public interface RecipeService {
 	int insert(Recipe recipe);
 	String material(int mLi, HttpServletRequest req);
 	String image(int ili, HttpServletRequest req);
-	Recipe detail(String no);	
 	String lastimage(int ili, HttpServletRequest req);	
 	Recipe rcpSelect(int no);
 	void rcpUpdate(Recipe recipe);

@@ -14,7 +14,7 @@ public class Recipe {
 	private String oven;
 	private Date writeDate;
 	private String lastimage;
-	private int rate;
+	private float rate;
 
 	private String[] sendText;	
 
@@ -84,10 +84,10 @@ public class Recipe {
 	public void setWriteDate(Date writeDate) {
 		this.writeDate = writeDate;
 	}
-	public int getRate() {
+	public float getRate() {
 		return rate;
 	}
-	public void setRate(int rate) {
+	public void setRate(float rate) {
 		this.rate = rate;
 	}
 	public String getLastimage() {
