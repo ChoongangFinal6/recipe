@@ -200,17 +200,24 @@ public class RCPController {
 		
 		int no = rs.insert(recipe);
 		// 현재 작성된 글의 번호를 받아온다.		
-		
+		System.out.println(ili);
 		//////////////////////// Content //////////////////////////
 		
 		String image = rs.image(ili, req);
 		String[] imagelist = image.split(",");
 		
-		for(int i=0; i<ili; i++) {
-			content.setPostNo(no);
-			content.setImage(imagelist[i]);
-			content.setContent(recipe.getSendText()[i]);
-			cs.insert(content);
+		for(int i=0; i<ili; i++) {			
+			if(i>=1) {
+				content.setPostNo(no);
+				content.setImage(imagelist[i]);
+				content.setContent(recipe.getSendText()[i]);
+				cs.insert2(content);
+			} else {
+				content.setPostNo(no);
+				content.setImage(imagelist[i]);
+				content.setContent(recipe.getSendText()[i]);
+				cs.insert1(content);
+			}
 		}		
 		return "result";		
 	}	

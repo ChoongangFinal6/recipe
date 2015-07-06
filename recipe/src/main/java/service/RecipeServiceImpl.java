@@ -37,6 +37,10 @@ public class RecipeServiceImpl implements RecipeService{
 	}
 
 	@Override
+	public Recipe detail(int no) {	
+		return rd.detail(no);
+	}
+
 	public Recipe rcpSelect(int no) {		
 		return rd.select(no);
 	}

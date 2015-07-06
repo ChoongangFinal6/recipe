@@ -62,6 +62,12 @@ public class RecipeDaoImpl implements RecipeDao{
 		}		
 		return image;
 	}
+
+	@Override
+	public Recipe detail(int no) {
+		return session.selectOne("Recipe.detail", no);
+	}
+
 	public Recipe select(int no) {		
 		Recipe recipe = (Recipe) session.selectOne("Recipe.select", no);		
 		return recipe;

@@ -13,9 +13,13 @@
 	select * from Content where postNo = #{postNo}
 </select>
 
-<insert id="insert" parameterType="Content" >
+<insert id="insert1" parameterType="Content" >	
+	insert into Content values (#{postNo}, 1, #{image}, #{content})
+</insert>
+
+<insert id="insert2" parameterType="Content" >
 	<selectKey keyProperty="no" resultType="int" order="BEFORE">
-		select max(nvl(no, 0))+1 from Content
+		select max(nvl(no, 0))+1 from Content where postNo = #{postNo}
 	</selectKey>
 	insert into Content values (#{postNo}, #{no}, #{image}, #{content})
 </insert>

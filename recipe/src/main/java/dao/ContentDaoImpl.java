@@ -21,7 +21,11 @@ public class ContentDaoImpl implements ContentDao {
 		return content;
 	}
 	@Override
-	public void insert(Content content) {
-		session.insert("Content.insert", content);
+	public void insert1(Content content) {
+		session.insert("Content.insert1", content);
+	}
+	
+	public void insert2(Content content) {
+		session.insert("Content.insert2", content);
 	}
 }
