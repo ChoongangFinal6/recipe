@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import model.Rating;
 import model.Recipe;
 
 public interface RecipeService {
@@ -15,4 +16,5 @@ public interface RecipeService {
 	Recipe rcpSelect(int no);
 	Recipe detail(int no);
 	void rcpUpdate(Recipe recipe);
+	int delete(Rating rating);
 }

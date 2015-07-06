@@ -228,7 +228,7 @@ public class RCPController {
 	 * @return
 	 */
 	@RequestMapping(value="detail")
-	public String detail(@RequestParam("no") int no, Model model) {		
+	public String detail(@RequestParam("no") int no, @RequestParam(value="pageNo", defaultValue="1") String pageNo, Model model) {		
 		Recipe recipe = rs.rcpSelect(no);
 		List<Content> content = cs.detail(no);
 		int count = rts.cntAvg(no).getCount();
@@ -244,6 +244,7 @@ public class RCPController {
 		//재료 전송
 		
 		model.addAttribute("count", count);
+		model.addAttribute("pageNo",pageNo);
 		model.addAttribute("recipe", recipe);
 		model.addAttribute("content", content);
 		return "detail";		
@@ -333,6 +334,7 @@ public class RCPController {
 	 * @param rep 이용해서 결과값주기 ->ajax에서 활용
 	 * @return 널
 	 */
+
 	@RequestMapping(value="rate", method = RequestMethod.GET)
 	public String ratePro(@RequestParam("postNo") int postNo, @RequestParam("rate") int rate, Model model, HttpServletRequest req, HttpServletResponse rep) throws IOException {		
 		Rating rating = new Rating();
@@ -351,4 +353,12 @@ public class RCPController {
 		out.print(msg);
 		return null;		
 	}	
+	@RequestMapping(value="delete")
+	public String delete(@RequestParam("no") int no, @RequestParam(value="pageNo", defaultValue="1") String pageNo, Model model)  {
+		Rating rating = new Rating();
+		rating.setNo(no);
+		rating.setEmail("ttt@choongang.com");
+		int result = rs.delete(rating);
+		return "redirect:rcpList.html";
+	}
 }
