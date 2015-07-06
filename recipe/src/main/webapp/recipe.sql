@@ -23,6 +23,8 @@ insert into MATERIAL values (12, '간장', 'source');
 insert into MATERIAL values (13, '김치', 'vegetable');
 insert into MATERIAL values (14, '된장', 'source');
 insert into MATERIAL values (15, '물', 'water');
+insert into MATERIAL values (16, '토마토소스', 'source');
+insert into MATERIAL values (17, '스파게티', 'noodle');
 
 
 

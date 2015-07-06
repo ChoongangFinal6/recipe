@@ -20,7 +20,7 @@
 							</c:if>
 						</div>
 						<div id="main">
-							<c:if test="${comment.refId != null}">&nbsp;<img alt="화살표" src='<c:url value="/resources/images/re.png"/>' width="10px" height="10px">
+							<c:if test="${comment.refId != null}">&nbsp;<img alt="화살표" src='<c:url value="/resources/img/re.png"/>' width="10px" height="10px">
 							</c:if>
 							<c:if test="${comment.refId != comment.email && comment.refId != null}">
 								<span class="refId">${comment.refId} 님께</span>
@@ -41,7 +41,7 @@
 					<input type="submit" value="입력" >
 				</div>
 				<div>
-					<input type="text" placeholder="댓글을 입력하세요" name='content'>
+					<input type="text" placeholder="댓글을 입력하세요" name='content' required="required">
 				</div>
 			</form>
 		</div>

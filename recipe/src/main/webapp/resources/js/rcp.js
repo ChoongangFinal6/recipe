@@ -200,7 +200,7 @@ $(function() {
 $(function() {	
 	$( "ul#wcontent" ).sortable({
 	      revert: true,
-	      cancel: "div.content-table-div-right"
+	      cancel: ".content-table-div-right"
 	    });
 	// 본문 내용 이동 가능
 	

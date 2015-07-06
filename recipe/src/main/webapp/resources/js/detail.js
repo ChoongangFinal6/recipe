@@ -57,6 +57,11 @@ function replyC(no) {
 	$(thisLi).append("<div id='replyDiv'><form name='reply' method='post' action='reply.html'>" +
 			"<div><span><input type='text' value='"+email+"' name='email' id='email' readonly='readonly'></span>" +
 			"<input type='submit' value='입력'></div>" +
-			"<div><input type='text' placeholder='댓글을 입력하세요' name='content'></div>" +
+			"<div><input type='text' placeholder='댓글을 입력하세요' name='content' required='required'></div>" +
 			"<input type='hidden' value='"+no+"' name='no'></form></div>");
+}
+function del(no,pageNo) {
+	if (confirm("삭제할까요")) {
+		location.href="./delete.html?no="+no+"&pageNo="pageNo;
+	}
 }
