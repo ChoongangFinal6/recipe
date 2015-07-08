@@ -232,8 +232,8 @@ public class RCPController {
 		recipe.setEmail("ttt@choongang.com");
 		// 아이디 : 이메일
 		
-		if(!recipe.equals("Y")) {
-			recipe.setOven("N");
+		if(!recipe.equals("N")) {
+			recipe.setOven("Y");
 		}
 		// 오븐
 				
@@ -298,6 +298,17 @@ public class RCPController {
 		}
 		model.addAttribute("mList", mList);
 		//재료 전송
+		
+		int time = recipe.getTime();
+		int day, hour, minute;
+		day = time / 1440;
+		hour = (time % 1440)/60;
+		minute = (time % 1440)%60;
+		
+		model.addAttribute("day", day);
+		model.addAttribute("hour", hour);
+		model.addAttribute("minute", minute);
+		// 꺼내올 시간 계산
 		
 		model.addAttribute("count", count);
 		model.addAttribute("pageNo",pageNo);
