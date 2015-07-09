@@ -95,10 +95,7 @@
 					<ul style="list-style: none; " id="wcontent">
 						<li>
 							<table class="content-table" style="background-color: #B2A095;">
-								<tr>
-									<td><div id="image" class="content-table-div-left"></div></td>
-									<td style="padding-left: 10px;">
-										<div class="content-table-div-right content" id="content"></div>
+								<tr>				
 									<td>
 										<div id="image" class="content-table-div-left upload-btn" align="center">
 											<div style="margin-top: 60px;">이미지 등록</div>
