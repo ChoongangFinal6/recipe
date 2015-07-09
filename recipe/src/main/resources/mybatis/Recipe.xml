@@ -21,43 +21,28 @@
 		select * from Recipe where no = #{no}
 	</select>
 
-<<<<<<< HEAD
-<select id="selectCount" resultType="int">
-	select count(*) from Recipe
-</select>
+	<select id="selectCount" resultType="int">
+		select count(*) from Recipe
+	</select>
 
-<select id="selectRow" parameterType="int" resultMap="Recipelist">
-select * from (select rownum rn, a.* from (select * from Recipe order by no desc) a) where rn between #{startRow} and #{endRow}
-</select>
+	<select id="selectRow" parameterType="int" resultMap="Recipelist">
+		select * from (select rownum rn, a.* from (select * from Recipe order by no desc) a) where rn between #{startRow}
+		and #{endRow}
+	</select>
 
-<update id="update" parameterType="Recipe" >
-	update Recipe set
-	country = #{country},
-	time = #{time},
-	material = #{material},
-	name = #{name},
-	difficulty = #{difficulty},
-	amount = #{amount},
-	oven = #{oven}, 
-	lastimage = #{lastimage}
-	where no = #{no}		
-</update>
-=======
 	<update id="update" parameterType="Recipe">
 		update Recipe set
 		country = #{country},
 		time = #{time},
-		material =
-		#{material},
+		material = #{material},
 		name = #{name},
 		difficulty = #{difficulty},
 		amount = #{amount},
 		oven = #{oven},
-		lastimage =
-		#{lastimage}
+		lastimage = #{lastimage}
 		where no = #{no}
 	</update>
->>>>>>> c36d5b3dbddf5ce88fe65bed9248ab56b316501f
+
 
 	<insert id="insert" parameterType="Recipe" keyProperty="no">
 		<selectKey keyProperty="no" resultType="int" order="BEFORE">

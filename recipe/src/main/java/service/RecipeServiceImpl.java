@@ -57,7 +57,6 @@ public class RecipeServiceImpl implements RecipeService{
 	}
 
 	@Override
-<<<<<<< HEAD
 	public int selectCount() {		
 		return rd.selectCount();
 	}
@@ -65,9 +64,10 @@ public class RecipeServiceImpl implements RecipeService{
 	@Override
 	public List<Recipe> selectRow(Recipe recipe) {	
 		return rd.selectRow(recipe);
-=======
+	}
+	
+	@Override
 	public int delete(Rating rating) {
 		return rd.delete(rating);
->>>>>>> c36d5b3dbddf5ce88fe65bed9248ab56b316501f
 	}
 }
