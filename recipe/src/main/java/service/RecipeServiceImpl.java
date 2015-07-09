@@ -65,7 +65,6 @@ public class RecipeServiceImpl implements RecipeService{
 	public List<Recipe> selectRow(Recipe recipe) {	
 		return rd.selectRow(recipe);
 	}
-	
 	@Override
 	public int delete(Rating rating) {
 		return rd.delete(rating);

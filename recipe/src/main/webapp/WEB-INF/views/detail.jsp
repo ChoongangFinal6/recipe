@@ -11,53 +11,79 @@
 <body>
 	<div class="detail" align="center" style="margin-top: 40px;">
 		<div style="width: 940px;">
-			<div style="width: 940px;" align="left">
-				<h1 style="margin-left: 10px;">${recipe.name}</h1>
+			<div style="width: 940px; height: 60px;" align="right" class="listcolor">
+				<h1 class="list" style="padding-top: 10px;">${recipe.name}</h1>
+			 
+			 <div style="width: 940px; height:10px; margin-top: -10px;" class="listcolor"></div>
 			</div>
-
-			<div style="border: 2px solid black; margin-top: -15px; width: 940px;"></div>
-
-			<div style="border: 1px solid black; margin-top: 15px; padding: 20px; height: 60px;">
-				<span style="font-size: 17px; margin-right: 20px; float: left;">요리명 : </span>${recipe.name}
-
-
-				<div style="float: right; width: 350px; margin-bottom: 10px;" align="right">
+		</div>	
+			
+		<div style="width: 920px;  height: 112px; padding: 10px; margin-top: 18px;" class="contcolor fontcolor">
+			<div  class="border" style="height: 107px; padding: 0 20 0 20;">				
+				<div style="float: right; width: 350px; margin: 10 10 0 0;" align="right">
 					<c:if test="${recipe.oven=='Y'}"><img alt="오븐사용" src="<c:url value="/resources/img/oven.png"/>"></c:if>
 					<c:if test="${recipe.oven=='N'}"><img alt="오븐사용 안함" src="<c:url value="/resources/img/no_oven.png"/>"></c:if>
 				</div>
-
-				<div style="float: left; margin-top: 10px;">나라 : ${recipe.country}, 양 : ${recipe.amount }, 난이도 :
-					${recipe.difficulty }</div>
-
-				<div style="float: right; margin-top: 10px;">걸리는 시간 ${recipe.time }</div>
+					
+				<div class="left" style="margin: 10 100 0 0; font-size: 17px;">
+					<div class="left subtitle">나라 |</div>
+					<div class="left subcont">${recipe.country}</div>
+				</div>
+				
+				<div class="left" style="margin: 10 100 0 0; font-size: 17px;">
+					<div class="left subtitle">양 | </div> 
+					<div class="left subcont">${recipe.amount }</div>
+				</div>
+				
+				<div class="left" style="margin: 10 10 0 0; font-size: 17px;">
+					<div class="left subtitle">난이도 | </div> 
+					<div class="left subcont">${recipe.difficulty }</div>
+				</div>
+				
+				<div style="border:2px solid #B2A095; margin-top: 10px; width: 870px; float: left;"></div>
+		
+				<div style="float: left; margin: 10 10 0 0;">
+					<div class="left subtitle ">걸리는 시간 | </div>
+					<div class="left subcont">${day} 일</div>
+					<div class="left subcont">${hour} 시간</div>
+					<div class="left subcont">${minute} 분</div>
+				</div>				
 			</div>
-
-			<div style="width: 940px;" align="left">
-				<h3 style="margin-left: 10px;">재료</h3>
-				<div style="border: 2px solid black; margin-top: -10px;"></div>
-				<p>
+		</div>		
+		
+		<div style="width: 940px; margin-top: 0px;">
+			<div style="width: 940px; height: 45px;" align="right" class="listcolor">
+				<h3 class="list" style="padding-top: 15px;">재료</h3>
+			 
+			 <div style="width: 940px;height:10px; margin-top: -10px;" class="listcolor"></div>
 			</div>
-			<div style="border: 1px solid black; padding: 10px;">
+		</div>
+		
+		<div style="width: 920px; padding: 10px; margin-top: 16px; overflow: auto;" class="contcolor fontcolor">
+			<div class="border" style="overflow: auto;">
 				<div>
-					<ul id="ul-material">
+					<ul class="left" id="ul-material">
 						<c:forEach var="mt" items="${mList}">
-							<li><div>${mt[0]}${mt[2]}${mt[1]}</div></li>
+							<li><div class="left mcolor" style="padding: 10px;">${mt[0]} ${mt[2]} ${mt[1]}</div></li>
 						</c:forEach>
 					</ul>
-				</div>
+				</div>				
 			</div>
-			<div style="width: 940px;" align="left">
-				<h3 style="margin-left: 10px;">내용</h3>
+		</div>		
+		
+		<div style="width: 940px; margin-top: 20px;">
+			<div style="width: 940px; height: 45px;" align="right" class="listcolor">
+				<h3 class="list" style="padding-top: 15px;">내용</h3>
+			 
+			 <div style="width: 940px;height:10px; margin-top: -10px;" class="listcolor"></div>
 			</div>
-			<div style="border: 2px solid black; margin-top: -10px;"></div>
-			<p>
-			<div style="border: 2px solid black; overflow: auto; padding: 10px; vertical-align: middle;" align="center"
-				id="div-content">
-
+		</div>				
+		
+		<div style="width: 920px; padding: 10px; margin-top: 16px; overflow: auto;" class="contcolor fontcolor">
+			<div class="border" style="overflow: auto;">
 				<ul style="list-style: none;" id="wcontent">
 					<li>
-
-						<table class="content-table">
+						<table class="content-table border">
 							<c:forEach items="${content}" var="cntnt">
 								<tr>
 									<td><div id="image" class="content-table-div-left">
@@ -73,34 +99,35 @@
 							</c:if>
 						</table>
 					</li>
-				</ul>
+				</ul>		
 			</div>
 		</div>
-<<<<<<< HEAD
-		<input type="button" value="목록으로" onclick="location.href='rcpList.html?no=${pageNo}'" style="margin-top: 30px;"> <input
-			type="button" value="수정하기" onclick="location.href='rcpUpdate.html?no=${recipe.no}'" style="margin-top: 30px;">
-=======
-		<input type="button" value="목록으로" onclick="location.href='rcpList.html?pageNo=${pageNo}'" style="margin-top: 30px;"> 
-		<input type="button" value="수정하기" onclick="location.href='rcpUpdate.html?no=${recipe.no}'" style="margin-top: 30px;">
-		<input type="button" value="삭제하기" onclick="del(${recipe.no},${pageNo})" style="margin-top: 30px;">
->>>>>>> c36d5b3dbddf5ce88fe65bed9248ab56b316501f
+		
+		<div>
+			<input type="button" id="aaa" value="목록으로" onclick="location.href='rcpList.html?pageNo=${pageNo}'" style="margin-top: 30px;"> 
+			<input type="button" value="수정하기" onclick="location.href='rcpUpdate.html?no=${recipe.no}'" style="margin-top: 30px;">
+			<input type="button" value="삭제하기" onclick="del(${recipe.no},${pageNo})" style="margin-top: 30px;">
+		</div>	
+		
 		<div class="rate">
-			<input type="hidden" value="${recipe.no }" id="recipeNo" name="postNo"> 
-			<span class="score" id="score">평점 :${recipe.rate}</span> 
-			<span class="count" id="count">(${count}명 참여)</span> 
-			<span> 
-				<select name="rate" id="rateSelect">
-					<c:forEach begin="0" end="9" var="j">
-						<option value="${10-j}">
-							<c:forEach begin="0" end="${9-j }" var="i">♩</c:forEach> ${10-j}
-						</option>
-					</c:forEach>
-				</select>
-			</span> <span> <input type="button" value="평가" id="rating">
-			</span>
-		</div>
-		<div id="comment">
-		</div>
-	</div>
+		<input type="hidden" value="${recipe.no }" id="recipeNo" name="postNo"> 
+		<span class="score" id="score">평점 :${recipe.rate}</span> 
+		<span class="count" id="count">(${count}명 참여)</span> 
+		<span> 
+			<select name="rate" id="rateSelect">
+				<c:forEach begin="0" end="9" var="j">
+					<option value="${10-j}">
+						<c:forEach begin="0" end="${9-j }" var="i">♩</c:forEach> ${10-j}
+					</option>
+				</c:forEach>
+			</select>
+		</span>
+		<span>
+			<input type="button" value="평가" id="rating">
+		</span>
+	</div>					
+</div>
+
+		<div id="comment"></div>	
 </body>
 </html>

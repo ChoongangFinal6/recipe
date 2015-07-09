@@ -6,17 +6,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<script type="text/javascript">
-	function change(str) {
-		alert(str);
-	}
-</script>
 <body>
 <form action="rcpUpdateAction.html" id="frm" name="frm" method="post">
 <div align="center" style="margin-top: 40px;">
 	<div style="width: 940px;">
 		<div style="width: 940px;" align="left">
-			<h1 style="margin-left: 10px;">레시피 작성</h1>
+			<h1 style="margin-left: 10px;">레시피 수정</h1>
 		</div>		
 		
 		<div style="border: 2px solid black; margin-top: -15px; width: 940px;"></div>

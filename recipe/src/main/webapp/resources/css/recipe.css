@@ -1,14 +1,38 @@
 @CHARSET "UTF-8";
 
-.content-table {border: 1px solid black; padding: 10px; margin-left: -35px; margin-top: 20px;}
-.content-table-div-left {border: 1px solid black; width: 200px; height: 150; padding: 5px; overflow: hidden;}
+.content-table {padding: 10px; margin-left: -35px; margin-top: 20px;}
+.content-table-div-left {width: 200px; height: 150; padding: 5px; overflow: hidden; background-color: white; }
 .content-table-div-left img {max-width: 100%; height: auto;}
 
-.content-table-div-right {border: 1px solid black; height: 140; width: 500px; padding: 10px; overflow: auto;}
+.content-table-div-right {height: 140; width: 500px; padding: 10px; overflow: auto; background-color: white; }
 
 #ul-material li {list-style: none;}
-.list {margin-left: 10px; color: #FFFFFF; margin-right: 5px;}
-.listtd {margin-left: 10px; color: #FFFFFF; background-color: red}
-.button {color: #FFFFFF; background-color: red; width: 70px; height: 30px; font-size: 15px;}
+.list {margin-left: 10px; margin-right: 5px;}
+.listtd {margin-left: 10px; background-color: red}
+.button {width: 70px; height: 30px; font-size: 15px;}
 .list-li {font-size: 22px; display: inline;}
 .active a:visited {color: #ff0000; text-decoration:none; font-weight: bolder;}
+
+.listcolor {background-color: #B2A095;}
+.contcolor {background-color: #ffffff;}
+.border{border: 4px solid #B2A095;}
+.mcolor{border-radius: 20px 20px 20px 20px;
+-moz-border-radius: 20px 20px 20px 20px;
+-webkit-border-radius: 20px 20px 20px 20px;
+border: 5px solid #B2A095;}
+
+.fontcolor {}
+.subtitle {margin-right: 10px; font-weight: bolder; font-size: 20px;}
+.subcont {margin: 5 10 0 0;}
+.left {float: left;}
+
+.listradius{border-radius: 10px 10px 10px 10px;
+-moz-border-radius: 10px 10px 10px 10px;
+-webkit-border-radius: 10px 10px 10px 10px;
+border: 5px solid #000000;}
+
+.ovenImage{width: 100%; position: relative; top:-100%;}
+.ovenOn {position: relative; top:0%;}
+.ovenImage:HOVER{
+	opacity:0.5;
+}

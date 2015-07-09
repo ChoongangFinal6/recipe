@@ -10,18 +10,18 @@
 	<div align="center" style="margin-top: 40px;">
 		
 		<div style="width: 940px; margin-bottom: 50px;">
-			<div style="width: 940px; background-color: red; height: 45px;" align="right">
+			<div style="width: 940px; height: 45px;" align="right" class="listcolor">
 				<h1 class="list">레시피</h1>
-			 <div style="width: 940px; background-color: red; height:10px; margin-top: -13px;"></div>
+			 <div style="width: 940px;height:10px; margin-top: -15px;" class="listcolor"></div>
 			</div>
 		</div>
 		
 		<div align="right" style="width: 940px; margin-bottom: 10px; margin-top: -20px;">
-			<input type="button" id="write" class="button" value="글 작성">	
+			<input type="button" id="write" class="button listcolor" value="글 작성">	
 		</div>
 		
 		<table style="font-size: 20px;">
-			<tr class="listtd" height="40px;">
+			<tr class="listtd listcolor" height="40px;">
 				<th width="100px;">번호</th>
 				<th width="320px;">제목</th>
 				<th width="250px;">작성자</th>
@@ -32,7 +32,7 @@
 			<c:forEach var="list"  items="${recipeList}">
 			<tr height="40px;">
 				<td align="center">${list.no}</td>
-				<td style="padding-left: 15px;"><a href="detail.html?no=${list.no}">${list.name}</a></td>
+				<td style="padding-left: 15px;"><a href="detail.html?no=${list.no}&pageNo=${pageNo}">${list.name}</a></td>
 				<td align="center">${list.email}</td>
 				<td align="center">${list.rate}</td>
 				<td align="center"><fmt:formatDate value="${list.writeDate}" pattern="yy/MM/dd"/> </td>
@@ -40,7 +40,7 @@
 			</c:forEach>
 			
 		</table>
-		<div style="width: 940px; background-color: red; height:10px; margin-top: 5px;"></div>
+		<div style="width: 940px; height:10px; margin-top: 5px;" class="listcolor"></div>
 		
 			<ul style="list-style: none;">
 				<li>

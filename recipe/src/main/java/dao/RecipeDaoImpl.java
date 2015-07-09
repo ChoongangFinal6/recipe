@@ -101,7 +101,6 @@ public class RecipeDaoImpl implements RecipeDao{
 	public List<Recipe> selectRow(Recipe recipe) {	
 		return session.selectList("Recipe.selectRow", recipe);
 	}
-	
 	/* delete수행대신 update로 no 음수화
 	 */
 	@Override
