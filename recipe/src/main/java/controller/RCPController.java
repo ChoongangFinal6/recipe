@@ -231,12 +231,7 @@ public class RCPController {
 			BindingResult result, Model model, HttpServletRequest req, HttpServletResponse rep) {
 		recipe.setEmail("ttt@choongang.com");
 		// 아이디 : 이메일
-		
-		if(!recipe.equals("N")) {
-			recipe.setOven("Y");
-		}
-		// 오븐
-				
+	
 		int day = Integer.parseInt(req.getParameter("time-d"));
 		int hour = Integer.parseInt(req.getParameter("time-h"));
 		int minute = Integer.parseInt(req.getParameter("time-m"));		

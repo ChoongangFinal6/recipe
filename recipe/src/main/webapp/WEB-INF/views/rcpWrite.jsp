@@ -20,13 +20,15 @@
 					</div>
 				</div>	
 
-				<div style="margin-top: 15px; padding: 20px; height: 60px;">
+				<div style="margin-top: 20px; padding: 20px; height: 60px; background-color: #FFF5EF;">
 					<span class="subtitle left" style="font-size: 17px; margin-right: 20px;">요리명</span>
 					<input class="left" type="text" id="title"	style="width: 50%; height: 25px;" name="name" value="${recipe.name}">
 
 					<div style="float: right; width: 350px; margin-bottom: 10px;" align="right">
-						<input type="hidden" name="oven" value="N">
-						<img alt="오븐" src='<c:url  value="/resources/img/no_oven.png"></c:url>'>
+						<input type="hidden" name="oven"  id="oven" value="N">
+						<div class="ovenDiv" style="height:32px; width:32px; overflow:hidden; ">
+							<img class="ovenImage" alt="오븐" src='<c:url  value="/resources/img/ovenImage.png"></c:url>'>
+						</div>
 					</div>
 
 					<div style="float: left; margin-top: 20px;">
@@ -75,13 +77,9 @@
 					</div>
 				</div>
 
-					<div class="ui-widget" style="margin-top: 30px;">
-						<label for="material">재료 검색</label> <input id="material" size="50" name="material">
-					</div>
-					<p>
-					<div>
+					<div class="ui-widget" style="margin-top: 20px; padding:10px; background-color: #FFF5EF;">
+						<label for="material" style="margin-right: 20px;">재료 검색</label><input id="material" size="50" name="material">
 						<ul id="ul-material">
-
 						</ul>
 					</div>
 				</div>
@@ -94,25 +92,24 @@
 					</div>
 				</div>
 				
-				<div style="overflow: auto; padding: 10px; vertical-align: middle; margin-top: 20px;"	align="center" id="div-content">
+				<div style="overflow: auto; padding: 10px; vertical-align: middle; margin-top: 20px; width: 920px; background-color: #FFF5EF;"	align="center" id="div-content">
 
-					<ul style="list-style: none;" id="wcontent">
+					<ul style="list-style: none; " id="wcontent">
 						<li>
 							<table class="content-table" style="background-color: #B2A095;">
 								<tr>
 									<td>
 										<div id="image" class="content-table-div-left upload-btn" align="center">
 											<div style="margin-top: 60px;">이미지 등록</div>
-										</div>
-										
+										</div>										
 									</td>
 									<td style="padding-left: 10px;">										
 										<div class="content-table-div-right" id="content" contenteditable="true"></div>
 									</td>
-									<td>										
-										<input type="button" class="addlist" value="추가"><p>
-										<input type="button" class="cont-move" value="이동"><p>
-										<input type="button" class="removelist" value="삭제">
+									<td style="padding-left: 10px;">										
+										<input type="button" class="addlist btn" value="추가"><p>
+										<input type="button" class="cont-move btn" value="이동"><p>
+										<input type="button" class="removelist btn" value="삭제">
 									</td>
 								</tr>								
 							</table>
