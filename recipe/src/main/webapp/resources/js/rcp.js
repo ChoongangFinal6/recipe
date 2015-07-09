@@ -1,4 +1,10 @@
 $(function() {
+	$(".ovenDiv").on('click', function() {
+		$(this).find("img").toggleClass("ovenOn");
+	});
+});
+
+$(function() {
 	$("#write").click(function() {
 		location.href="rcpWrite.html";
 	});
@@ -200,11 +206,16 @@ $(function() {
 $(function() {	
 	$( "ul#wcontent" ).sortable({
 	      revert: true,
-	      cancel: ".content-table-div-right"
+	      cancel: ".content-table-div-right",
+	      handle: ".cont-move"
 	    });
 	// 본문 내용 이동 가능
 	
 	$("#send").click(function() {	
+		if($(".ovenDiv").find("img").attr("class")!="ovenImage") {
+			$("#oven").val("Y");			
+		}
+		
 		if($("input#title").val()==null || $("input#title").val()=="") {
 			alert("요리명을 입력해주세요.");
 			$("input#title").focus();
@@ -268,17 +279,26 @@ $(function() {
 	}));
 
 	$( "div#div-content" ).on("click", ".addlist", (function( event ) {	
-		$(this).parent().parent().parent().parent().parent().after("<li id='li-content' style='display:none;'><table class='content-table'>"
-				+ "<tr>"
-				+		"<td><div id='image' class='content-table-div-left'></div></td>"
-				+		"<td style='padding-left: 10px;'><div contenteditable='true' class='content-table-div-right' id='content'></div></td>"
-				+"</tr>"
-				+"<tr>"
-				+		"<td style='padding-top: 10px;'><input type='button' value='사진 등록' id='upload' class='upload-btn'></td>"
-				+		"<td align='right' style='padding-top: 10px;'><input type='button' style='margin-right: 10px;' class='addlist' value='추가'>" 
-				+		"<input type='button' class='removelist' value='삭제'></td>"
-				+"</tr>"
-				+"</table></li>").next().fadeIn(1000);
+		$(this).parent().parent().parent().parent().parent().after(
+				'<li>'
+				+'<table class="content-table" style="background-color: #B2A095;">'
+					+'<tr>'
+						+'<td>'
+							+'<div id="image" class="content-table-div-left upload-btn" align="center">'
+								+'<div style="margin-top: 60px;">이미지 등록</div>'
+							+'</div>'										
+						+'</td>'
+						+'<td style="padding-left: 10px;">'										
+							+'<div class="content-table-div-right" id="content" contenteditable="true"></div>'
+						+'</td>'
+						+'<td style="padding-left: 10px;">'										
+							+'<input type="button" class="addlist btn" value="추가"><p>'
+							+'<input type="button" class="cont-move btn" value="이동"><p>'
+							+'<input type="button" class="removelist btn" value="삭제">'
+						+'</td>'
+					+'</tr>'								
+				+'</table>'
+			+'</li>').next().fadeIn(1000);
 		// 본문 li 추가
 		
 		var position = $(this).offset();

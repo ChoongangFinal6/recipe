@@ -16,10 +16,8 @@ public interface RecipeDao {
 	Recipe select(int no);
 	Recipe detail(int no);
 	void update(Recipe recipe);
-<<<<<<< HEAD
 	int selectCount();
 	List<Recipe> selectRow(Recipe recipe);
-=======
 	int delete(Rating rating);
->>>>>>> c36d5b3dbddf5ce88fe65bed9248ab56b316501f
+
 }

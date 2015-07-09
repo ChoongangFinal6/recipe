@@ -8,7 +8,7 @@
 </head>
 <body>
 <script type="text/javascript">
-	location.href="rcpWrite.html";
+	location.href="rcpList.html";
 </script>
 </body>
 </html>
