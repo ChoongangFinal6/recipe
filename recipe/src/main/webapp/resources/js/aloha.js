@@ -1,6 +1,6 @@
 $(function() {
 	aloha(document.querySelector('#content'));
-	var editables = aloha.dom.query('#content', document).map(aloha);​
+/* var editables = aloha.dom.query('#content', document).map(aloha);​*/
 /*	aloha(document.querySelector('.content'));
 	for (var command in aloha.ui.commands) {
 	    $('.action-' + command).on(

@@ -6,8 +6,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>레시피 작성</title>
-<script src="http://www.alohaeditor.org/download/aloha.min.js"></script>
-<script type="text/javascript" src="<c:url value="/resources/js/aloha.js"/>"></script>
 </head>
 <body>
 	<form action="rcpWrite.html" id="frm" method="post">
@@ -95,11 +93,6 @@
 								<tr>
 									<td><div id="image" class="content-table-div-left"></div></td>
 									<td style="padding-left: 10px;">
-										<span class="action-bold">B</span>
-										<span class="action-italic">I</span>
-										<span class="action-underline">U</span>
-										<span class="action-unformat">✘</span>
-										<div class="content-table-div-right content" id="content"></div>
 										<div class="content-table-div-right content" id="content"></div>
 									</td>
 								</tr>
