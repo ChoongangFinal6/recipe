@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import model.Rating;
 import model.Recipe;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,5 +54,18 @@ public class RecipeServiceImpl implements RecipeService{
 	@Override
 	public String lastimage(int ili, HttpServletRequest req) {
 		return rd.lastimage(ili, req);
+	}
+
+	@Override
+	public int selectCount() {		
+		return rd.selectCount();
+	}
+
+	@Override
+	public List<Recipe> selectRow(Recipe recipe) {	
+		return rd.selectRow(recipe);
+	}
+	public int delete(Rating rating) {
+		return rd.delete(rating);
 	}
 }

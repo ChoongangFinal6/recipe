@@ -10,7 +10,7 @@
 </resultMap>
 
 <select id="select" parameterType="int" resultMap="Contentlist">
-	select * from Content where postNo = #{postNo}
+	select * from Content where postNo = #{postNo} order by no
 </select>
 
 <insert id="insert1" parameterType="Content" >	
@@ -23,5 +23,9 @@
 	</selectKey>
 	insert into Content values (#{postNo}, #{no}, #{image}, #{content})
 </insert>
+
+<delete id="delete" parameterType="int">
+	delete from Content where postNo = #{postNo}
+</delete>
 
 </mapper>

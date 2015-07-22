@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
 		<typeAlias alias="Rating" type="model.Rating" />
 		<typeAlias alias="Material" type="model.Material" />
+		<typeAlias alias="Reply" type="model.Reply" />
 		<typeAlias alias="Recipe" type="model.Recipe" />
 		<typeAlias alias="Content" type="model.Content" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="mybatis/Rating.xml" />
 		<mapper resource="mybatis/Material.xml" />
+		<mapper resource="mybatis/Reply.xml" />
 		<mapper resource="mybatis/Recipe.xml" />
 		<mapper resource="mybatis/Content.xml" />
 	</mappers>

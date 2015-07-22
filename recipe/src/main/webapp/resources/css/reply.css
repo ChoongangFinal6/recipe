@@ -1,0 +1,13 @@
+@CHARSET "UTF-8";
+
+
+#commentUl {
+	list-style-type: none;
+}
+#commentBtn,#delSpan {
+	cursor: pointer;
+}
+
+#aaa:HOVER {background-color: black;}
+
+.rate {margin-top: 10px;}

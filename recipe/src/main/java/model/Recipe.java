@@ -14,9 +14,12 @@ public class Recipe {
 	private String oven;
 	private Date writeDate;
 	private String lastimage;
-	private int rate;
+	private float rate;
 
 	private String[] sendText;	
+	
+	private int startRow;
+	private int endRow;
 
 	public String[] getSendText() {
 		return sendText;
@@ -84,10 +87,10 @@ public class Recipe {
 	public void setWriteDate(Date writeDate) {
 		this.writeDate = writeDate;
 	}
-	public int getRate() {
+	public float getRate() {
 		return rate;
 	}
-	public void setRate(int rate) {
+	public void setRate(float rate) {
 		this.rate = rate;
 	}
 	public String getLastimage() {
@@ -95,5 +98,17 @@ public class Recipe {
 	}
 	public void setLastimage(String lastimage) {
 		this.lastimage = lastimage;
+	}
+	public int getStartRow() {
+		return startRow;
+	}
+	public void setStartRow(int startRow) {
+		this.startRow = startRow;
+	}
+	public int getEndRow() {
+		return endRow;
+	}
+	public void setEndRow(int endRow) {
+		this.endRow = endRow;
 	}
 }

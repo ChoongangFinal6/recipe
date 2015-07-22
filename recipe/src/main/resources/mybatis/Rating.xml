@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Rating">
+	<resultMap type="Rating" id="RatingList">
+		<result property="no" column="no" />
+		<result property="postNo" column="postNo" />
+		<result property="rate" column="rate" />
+		<result property="email" column="email" />
+		<result property="inputDate" column="inputDate" />
+	</resultMap>
+	<insert id="insert" parameterType="Rating">
+		<selectKey keyProperty="no" resultType="int" order="BEFORE">
+			select max(nvl(no, 0))+1 from rating
+		</selectKey>
+		insert into rating values (#{no}, #{postNo}, #{rate}, #{email},
+		sysdate)
+	</insert>
+	<update id="rating" parameterType="int" statementType="CALLABLE">
+		{call
+		avgRate(#{postNo,mode=IN})
+		}
+	</update>
+	<select id="cntAvg" parameterType="int" resultType="Rating" useCache="false">
+		select count(no) "count", round(avg(rate),2) "average" from rating where postNo=#{postNo}
+	</select>
 
 </mapper>

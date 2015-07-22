@@ -28,4 +28,8 @@ public class ContentDaoImpl implements ContentDao {
 	public void insert2(Content content) {
 		session.insert("Content.insert2", content);
 	}
+	@Override
+	public void delete(int no) {
+		session.delete("Content.delete", no);
+	}
 }

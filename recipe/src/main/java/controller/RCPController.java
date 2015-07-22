@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.Content;
 import model.Material;
+import model.Rating;
 import model.Recipe;
+import model.Reply;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,7 +27,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import service.ContentService;
+import service.RatingService;
 import service.RecipeService;
+import service.ReplyService;
 import fileupload.FileUpload;
 
 @Controller
@@ -34,6 +38,10 @@ public class RCPController {
 	RecipeService rs;
 	@Autowired
 	ContentService cs;
+	@Autowired
+	RatingService rts;
+	@Autowired
+	ReplyService rpls;
 	
 	/**
 	 * 레시피를 작성하기 위한
@@ -45,6 +53,40 @@ public class RCPController {
 		return "rcpWrite";		
 	}
 	
+	@RequestMapping(value="rcpList", method = RequestMethod.GET)
+	public String rcpList(@RequestParam(value="pageNo", defaultValue="1") String pageNo, @ModelAttribute("recipe") Recipe recipe, Model model) {
+		int currentPage = Integer.parseInt(pageNo);
+		
+		int pageSize = 10; // 게시글 수
+		int blockSize = 10; // 블럭 수
+		int startPage = (currentPage - 1) / blockSize * blockSize + 1; // 블럭 시작 
+		int endPage = startPage + blockSize - 1; // 블럭 끝
+		
+		int startRow = ((currentPage - 1) * pageSize) + 1; // 게시글 시작 row 
+		int endRow = startRow + pageSize - 1; // 게시글 끝 row
+		
+		int totCnt = rs.selectCount(); // 총 게시글 수
+		
+		int startNum = totCnt - startRow + 1; // 게시글 시작 num
+		int pageCnt = (int) Math.ceil((double) totCnt / pageSize); // 총 페이지 수 
+
+		if (endPage > pageCnt) {
+			endPage = pageCnt;
+		}
+		
+		recipe.setStartRow(startRow);
+		recipe.setEndRow(endRow);
+		
+		List<Recipe> recipeList = rs.selectRow(recipe);
+		
+		model.addAttribute("recipeList", recipeList);
+		model.addAttribute("pageNo", pageNo);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+		
+		return "rcpList";		
+	}
+	
 	/**
 	 * 수정을 하고 확인을 누르면
 	 * 실질적으로 DB에 접속하여 수정하는 부분
@@ -52,11 +94,11 @@ public class RCPController {
 	 */
 	
 	@RequestMapping(value="rcpUpdateAction", method = RequestMethod.POST)
-	public String rcpWriteAction(@ModelAttribute("recipe") Recipe recipe, HttpServletRequest req, HttpServletResponse rep, Model model) {		
+	public String rcpWriteAction(@ModelAttribute("content") Content content, @ModelAttribute("recipe") Recipe recipe, HttpServletRequest req, HttpServletResponse rep, Model model) {		
 		recipe.setEmail("ttt@choongang.com");
 		// 아이디 : 이메일
 		
-		if(!recipe.getOven().equals("Y")) {
+		if(recipe.getOven() == null) {
 			recipe.setOven("N");
 		}
 		// 오븐
@@ -73,13 +115,33 @@ public class RCPController {
 		recipe.setMaterial(material);				
 		// 재료
 		
-		int Ili = Integer.parseInt(req.getParameter("imageLi"));
-		System.out.println(Ili);
+		int Ili = Integer.parseInt(req.getParameter("imageLi"));	
 		String image = rs.image(Ili, req);
 		recipe.setLastimage(image);
 		// 이미지		
 		
-		rs.rcpUpdate(recipe);
+		rs.rcpUpdate(recipe);				
+		
+		//////////////////// content /////////////////////		
+		
+		String[] imagelist = image.split(",");
+	
+		cs.delete(recipe.getNo());	
+		
+		for(int i=0; i<Ili; i++) {			
+			content.setPostNo(recipe.getNo());
+			content.setImage(imagelist[i]);
+			content.setContent(recipe.getSendText()[i]);
+			System.out.println(recipe.getSendText()[i]);
+			
+			if(i>=1) {
+				cs.insert2(content);
+			} else {			
+				cs.insert1(content);
+			}
+		}		
+
+		
 		return "result";		
 	}
 	
@@ -118,6 +180,13 @@ public class RCPController {
 		int mli = materialList.length/3;
 		model.addAttribute("mli", mli);
 		// 재료 li 갯수 전송
+		
+		
+		////////////////// Content ////////////////
+		
+		List<Content> content = cs.detail(no);
+		
+		model.addAttribute("content", content);
 		
 		return "rcpUpdate";		
 	}
@@ -162,12 +231,7 @@ public class RCPController {
 			BindingResult result, Model model, HttpServletRequest req, HttpServletResponse rep) {
 		recipe.setEmail("ttt@choongang.com");
 		// 아이디 : 이메일
-		
-		if(recipe.getOven()!="Y") {
-			recipe.setOven("N");
-		}
-		// 오븐
-				
+	
 		int day = Integer.parseInt(req.getParameter("time-d"));
 		int hour = Integer.parseInt(req.getParameter("time-h"));
 		int minute = Integer.parseInt(req.getParameter("time-m"));		
@@ -188,23 +252,21 @@ public class RCPController {
 		// 이미지		
 		
 		int no = rs.insert(recipe);
-		// 현재 작성된 글의 번호를 받아온다.		
-		System.out.println(ili);
+		// 현재 작성된 글의 번호를 받아온다.				
+		
 		//////////////////////// Content //////////////////////////
 		
 		String image = rs.image(ili, req);
 		String[] imagelist = image.split(",");
 		
 		for(int i=0; i<ili; i++) {			
+			content.setPostNo(no);
+			content.setImage(imagelist[i]);
+			content.setContent(recipe.getSendText()[i]);
+			
 			if(i>=1) {
-				content.setPostNo(no);
-				content.setImage(imagelist[i]);
-				content.setContent(recipe.getSendText()[i]);
 				cs.insert2(content);
-			} else {
-				content.setPostNo(no);
-				content.setImage(imagelist[i]);
-				content.setContent(recipe.getSendText()[i]);
+			} else {			
 				cs.insert1(content);
 			}
 		}		
@@ -217,9 +279,10 @@ public class RCPController {
 	 * @return
 	 */
 	@RequestMapping(value="detail")
-	public String detail(@RequestParam("no") int no, Model model) {		
+	public String detail(@RequestParam("no") int no, @RequestParam(value="pageNo", defaultValue="1") String pageNo, Model model) {		
 		Recipe recipe = rs.rcpSelect(no);
 		List<Content> content = cs.detail(no);
+		int count = rts.cntAvg(no).getCount();
 		
 		String material = recipe.getMaterial();
 		String[] materialList = material.split(",");
@@ -231,6 +294,19 @@ public class RCPController {
 		model.addAttribute("mList", mList);
 		//재료 전송
 		
+		int time = recipe.getTime();
+		int day, hour, minute;
+		day = time / 1440;
+		hour = (time % 1440)/60;
+		minute = (time % 1440)%60;
+		
+		model.addAttribute("day", day);
+		model.addAttribute("hour", hour);
+		model.addAttribute("minute", minute);
+		// 꺼내올 시간 계산
+		
+		model.addAttribute("count", count);
+		model.addAttribute("pageNo",pageNo);
 		model.addAttribute("recipe", recipe);
 		model.addAttribute("content", content);
 		return "detail";		
@@ -239,6 +315,7 @@ public class RCPController {
 	/**
 	 * 이미지 업로드를 누르면 작동하는 페이지
 	 */
+	
 	@RequestMapping(value="upload", method = RequestMethod.GET)
 	public String upload() {		
 		return "upload/upload";		
@@ -262,16 +339,88 @@ public class RCPController {
 	  model.addAttribute("name", replaceName);
 	  return "upload/upload2";
 	 }	
-	@RequestMapping(value="comment")
-	public String comment() {		
-		return "comment";		
+	/**
+	 * @param postNo content 테이블의 no를 받아서 조회
+	 * @return
+	 */
+	@RequestMapping(value="reply",method=RequestMethod.GET)
+	public String comment(@RequestParam("postNo") int postNo, Model model) {
+		List<Reply> list = rpls.list(postNo);
+		model.addAttribute("email", "ttt@choongang.com");
+		model.addAttribute("list", list);
+		model.addAttribute("postNo", postNo);
+		return "reply";	
 	}	
+	/**
+	 * 댓글쓰기 기능
+	 * @param reply	no의 null여부에 따라 답글인지 구분
+	 * @return 레시피 보기 페이지로 이동(해서 새로고침)
+	 */
+	@RequestMapping(value="reply",method=RequestMethod.POST)
+	public String commentWrite(@ModelAttribute("reply") Reply reply, BindingResult result, Model model) {		
+		reply.setEmail("ttt@choongang.com");
+		if (reply.getNo() > 0) {
+			Reply ref = rpls.select(reply.getNo());
+			reply.setRef(ref.getRef());
+			reply.setPostNo(ref.getPostNo());
+			reply.setRefId(ref.getEmail());
+		} else {
+		}
+		System.out.println(reply.getRef());
+		int result1 = rpls.insert(reply);
+		return "redirect:detail.html?no="+reply.getPostNo();	
+	}	
+	/**
+	 * 세션 등의 email 받아서 객체에 저장, no와 같이 del수행
+	 * @param no
+	 * @param model
+	 * @return
+	 * @throws IOException 
+	 */
+	@RequestMapping(value="delReply")
+	public String commentDelete(@RequestParam("no") int no, Model model, HttpServletRequest req, HttpServletResponse rep) throws IOException {		
+		Reply reply = new Reply();
+		reply.setNo(no);
+		reply.setEmail("ttt@choongang.com");
+		int result = rpls.delete(reply);
+		String msg = "" + result;
+		rep.setContentType("text/html; charset=utf-8");
+		PrintWriter out = rep.getWriter();		
+		out.print(msg);
+		return null;	
+	}	
+	/**
+	 * 평점주기
+	 * @param postNo
+	 * @param rate
+	 * @param rep 이용해서 결과값주기 ->ajax에서 활용
+	 * @return 널
+	 */
+
 	@RequestMapping(value="rate", method = RequestMethod.GET)
-	public String rate() {		
-		return "rate";		
+	public String ratePro(@RequestParam("postNo") int postNo, @RequestParam("rate") int rate, Model model, HttpServletRequest req, HttpServletResponse rep) throws IOException {		
+		Rating rating = new Rating();
+		rating.setPostNo(postNo);
+		rating.setRate(rate);
+		rating.setEmail("ttt@choongang.com");
+		int result = rts.insert(rating);
+		Rating cntAvg = rts.cntAvg(postNo);
+		
+		String msg = "{\"result\":\""+result+"\""
+				+ ",\"count\":\""+cntAvg.getCount()+"\""
+				+ ",\"average\":\""+cntAvg.getAverage()+"\""
+				+ "}";
+		rep.setContentType("text/html; charset=utf-8");
+		PrintWriter out = rep.getWriter();		
+		out.print(msg);
+		return null;		
 	}	
-	@RequestMapping(value="rate", method = RequestMethod.POST)
-	public String ratePro() {		
-		return "rate";		
-	}	
+	@RequestMapping(value="delete")
+	public String delete(@RequestParam("no") int no, @RequestParam(value="pageNo", defaultValue="1") String pageNo, Model model)  {
+		Rating rating = new Rating();
+		rating.setNo(no);
+		rating.setEmail("ttt@choongang.com");
+		int result = rs.delete(rating);
+		return "redirect:rcpList.html";
+	}
 }

@@ -1,5 +1,6 @@
 package model;
 
+
 public class Content {
 	private int postNo;
 	private int no;

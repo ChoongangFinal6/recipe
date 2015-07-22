@@ -11,7 +11,7 @@
 <div align="center" style="margin-top: 40px;">
 	<div style="width: 940px;">
 		<div style="width: 940px;" align="left">
-			<h1 style="margin-left: 10px;">레시피 작성</h1>
+			<h1 style="margin-left: 10px;">레시피 수정</h1>
 		</div>		
 		
 		<div style="border: 2px solid black; margin-top: -15px; width: 940px;"></div>
@@ -121,21 +121,24 @@
 	<div style="border: 2px solid black; overflow: auto; padding: 10px; vertical-align:middle;" align="center" id="div-content">
 		
 			<ul style="list-style:none;" id="wcontent">
-				<li>
-					<table class="content-table">
-						<tr>
-							<td><div id="image" class="content-table-div-left"></div></td>
-							<td style="padding-left: 10px;"><div contenteditable="true" class="content-table-div-right" id="content"></div></td>
-						</tr>
-						<tr>
-							<td style="padding-top: 10px;"><input type="button" value="사진 등록" id="upload" class="upload-btn"></td>
-							<td align="right" style="padding-top: 10px;">
-								<input type="button" style="margin-right: 10px;" class="addlist" value="추가">
-								<input type="button" class="removelist" value="삭제">								
-							</td>
-						</tr>						
-					</table>							
-				</li>
+				<c:forEach var="con" items="${content}">
+					<li>
+						<table class="content-table">
+							<tr>
+								<td><div id="image" class="content-table-div-left"><img alt="이미지가 없습니다." src="image/${con.image }"></div></td>
+								<td style="padding-left: 10px;"><div contenteditable="true" class="content-table-div-right" id="content">
+								${con.content }</div></td>
+							</tr>
+							<tr>
+								<td style="padding-top: 10px;"><input type="button" value="사진 등록" id="upload" class="upload-btn"></td>
+								<td align="right" style="padding-top: 10px;">
+									<input type="button" style="margin-right: 10px;" class="addlist" value="추가">
+									<input type="button" class="removelist" value="삭제">								
+								</td>
+							</tr>						
+						</table>							
+					</li>			
+				</c:forEach>				
 			</ul>
 		</div>
 	</div>

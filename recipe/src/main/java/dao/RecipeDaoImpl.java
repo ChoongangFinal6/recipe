@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import model.Rating;
 import model.Recipe;
 
 import org.apache.ibatis.session.SqlSession;
@@ -23,7 +24,6 @@ public class RecipeDaoImpl implements RecipeDao{
 
 	@Override
 	public int insert(Recipe recipe) {
-		// TODO Auto-generated method stub
 		session.insert("Recipe.insert", recipe);
 		return recipe.getNo();
 	}
@@ -90,5 +90,22 @@ public class RecipeDaoImpl implements RecipeDao{
 		}
 		
 		return lastimage;
+	}
+
+	@Override
+	public int selectCount() {		
+		return session.selectOne("Recipe.selectCount");
+	}
+
+	@Override
+	public List<Recipe> selectRow(Recipe recipe) {	
+		return session.selectList("Recipe.selectRow", recipe);
+	}
+	/* delete수행대신 update로 no 음수화
+	 */
+	@Override
+	public int delete(Rating rating) {
+		return session.update("Recipe.del", rating);
+
 	}
 }

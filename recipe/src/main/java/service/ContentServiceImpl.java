@@ -14,6 +14,7 @@ public class ContentServiceImpl implements ContentService {
 	@Autowired
 	ContentDao cd;
 
+	@Override
 	public List<Content> detail(int no) {
 		return cd.detail(no);
 	}
@@ -24,5 +25,9 @@ public class ContentServiceImpl implements ContentService {
 	
 	public void insert2(Content content) {
 		cd.insert2(content);
+	}	
+	@Override
+	public void delete(int no) {	
+		cd.delete(no);
 	}
 }
