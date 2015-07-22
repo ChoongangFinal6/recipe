@@ -6,11 +6,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<script type="text/javascript">
-	function change(str) {
-		alert(str);
-	}
-</script>
 <body>
 <form action="rcpUpdateAction.html" id="frm" name="frm" method="post">
 <div align="center" style="margin-top: 40px;">
@@ -98,13 +93,7 @@
 										<input type="text" id="Mmain" value="${mlist[0]}"
 											style="width: 100px; border: none;" readonly="readonly">
 										/ 단위 :  <input type="text" id="Munit" value="${mlist[1]}"
-											style="width: 100px; border: none;" readonly="readonly">										
-										<%-- <select id="Munit${i}" onchange="change('${mlist[1]}')">
-											<option value="fork">fork</option>
-											<option value="spoon">spoon</option>
-											<option value="ctionScript">ActionScript</option>
-										</select> --%> 
-										
+											style="width: 100px; border: none;" readonly="readonly">	
 										/ 양 : <input type="text" id="Mamount" value="${mlist[2]}" readonly="readonly" style="border: none;">
 									</div>
 								</li>
