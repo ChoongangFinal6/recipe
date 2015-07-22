@@ -20,17 +20,6 @@
 	<select id="select" parameterType="int" resultType="Recipe">
 		select * from Recipe where no = #{no}
 	</select>
-
-<<<<<<< HEAD
-	<select id="selectCount" resultType="int">
-		select count(*) from Recipe
-	</select>
-
-	<select id="selectRow" parameterType="int" resultMap="Recipelist">
-		select * from (select rownum rn, a.* from (select * from Recipe order by no desc) a) where rn between #{startRow}
-		and #{endRow}
-	</select>
-=======
 <select id="selectCount" resultType="int">
 	select count(*) from Recipe
 </select>
@@ -38,7 +27,7 @@
 <select id="selectRow" parameterType="Recipe" resultMap="Recipelist">
 select * from (select rownum rn, a.* from (select * from Recipe order by no desc) a) where rn between #{startRow} and #{endRow}
 </select>
->>>>>>> 912f54d5bc2e564b79c09bcc3323462904835443
+
 
 	<update id="update" parameterType="Recipe">
 		update Recipe set
@@ -49,16 +38,9 @@ select * from (select rownum rn, a.* from (select * from Recipe order by no desc
 		difficulty = #{difficulty},
 		amount = #{amount},
 		oven = #{oven},
-<<<<<<< HEAD
-		lastimage = #{lastimage}
-		where no = #{no}
-	</update>
-
-=======
 		lastimage =	#{lastimage}
 		where no = #{no}
 	</update>
->>>>>>> 912f54d5bc2e564b79c09bcc3323462904835443
 
 	<insert id="insert" parameterType="Recipe" keyProperty="no">
 		<selectKey keyProperty="no" resultType="int" order="BEFORE">
