@@ -93,13 +93,7 @@
 										<input type="text" id="Mmain" value="${mlist[0]}"
 											style="width: 100px; border: none;" readonly="readonly">
 										/ 단위 :  <input type="text" id="Munit" value="${mlist[1]}"
-											style="width: 100px; border: none;" readonly="readonly">										
-										<%-- <select id="Munit${i}" onchange="change('${mlist[1]}')">
-											<option value="fork">fork</option>
-											<option value="spoon">spoon</option>
-											<option value="ctionScript">ActionScript</option>
-										</select> --%> 
-										
+											style="width: 100px; border: none;" readonly="readonly">	
 										/ 양 : <input type="text" id="Mamount" value="${mlist[2]}" readonly="readonly" style="border: none;">
 									</div>
 								</li>
